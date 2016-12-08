@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no"> 
+<script src="./statics/js/jquery-1.10.2.min.js"></script>
+<link rel="stylesheet" type="text/css" href="./statics/css/mobile.css">
+<link rel="stylesheet" type="text/css" href="./statics/css/common.css">
+<script src="/dist/sdk/dmshub.js"></script>
+<title>奥点云-金融解决方案</title>
+<style type="text/css">
+/*页面css，可根据你自己的需求修改*/
+body{padding:0px;margin:0px;height: 100%;width:100%;overflow: hidden;}
+.chat{width: 100%;height: 30rem;}
+.ask{width: 100%;height: 30rem;}
+.white-box{width: 100%;height: 30rem;}
+.userlist-div{width: 100%;height: 30rem;}
+</style>
+</head>
+<body>
+<!--播放器 objectPlayer对象可用，具体请阅读objectPlayer相关文档-->
+<div class="surface-container" id="lssPlayBox">
+    <div id="play" style="height:100%"></div>
+</div>
+    <script type="text/javascript" src="http://finance.aodianyun.com/helper/room_player.js?r=1478&id=play&chat=0"></script>
+
+<div class="chat-title" id="chattitle">
+    <span id="chatchannel" class="z-crt">聊天</span>
+    <span id="">问答</span>
+    <span id="">文档</span>
+    <span id="" style="margin-left:1rem;">用户列表</span>
+</div>
+
+<div class='panes' id="DMSCss">
+        <div id="dms" class="pane">
+              <!--聊天栏 请阅读聊天栏文档 按需求引用依赖的js和css-->
+            <div class="chat"></div>
+            <script src="./statics/js/mychat.js"></script>
+            <script src="./statics/js/idangerous.swiper.min.js"></script>
+            <script src="./statics/js/jquery.qqFace.mobile.js"></script>
+        </div>
+        <div id="ask" class="pane" style="display:none;">
+             <!--问答栏 请阅读问答栏文档 按需求引用依赖的js和css-->
+            <div class="ask"></div>
+            <script src="./statics/js/myask.js"></script>
+        </div>
+        <div id="doc" class="pane" style="display:none;">
+            <!--白板 WISExchange对象可用，具体请阅读WISExchange相关文档-->
+            <iframe id="wis-container" class="white-box"></iframe>
+            <script type="text/javascript" src="http://finance.aodianyun.com/helper/room_wis.js?r=1478&id=wis-container"></script>
+        </div>
+        <div id="user" class="pane" style="display:none;">
+             <!--问答栏 请阅读用户列表栏文档 按需求引用依赖的js和css-->
+            <div class="userlist-div"></div>
+            <script src="./statics/js/userlist.js"></script>
+        </div>
+</div>
+</body>
+<script type="text/javascript">
+var $_GET = (function(){
+    var url = window.document.location.href.toString();
+    var u = url.split("?");
+    if(typeof(u[1]) == "string"){
+        u = u[1].split("&");
+        var get = {};
+        for(var i in u){
+            var j = u[i].split("=");
+            get[j[0]] = decodeURIComponent(j[1]);
+        }
+        return get;
+    } else {
+        return {};
+    }
+})();
+
+/* DmsHub 消息接收模块 你需要设置 房间id（room_id） 当前用户id（uid） 用户昵称（nick） 用户头像（ava） */
+    
+var dmsObj = new DmsHub({
+    debug: typeof console.log == 'function',
+    room_id: 1478,
+    uid: $_GET['uid'] || 100000,
+    nick: $_GET['nick'] || 'Test',
+    ava: $_GET['ava'] || ''
+}, function () {
+    //聊天栏初始化
+    var chatObj = $('.chat').chatlist({
+        config:this,        //配置信息
+        emotionPath:'./statics/img/arclist/', //表情存放路径
+        emotionbtn:'./statics/img/emotion.png', //表情按钮路径
+        systemImg:'./statics/img/system.png',   //系统提示图片路径
+        phone:true
+    });
+    //问答栏初始化
+    var askObj = $('.ask').asklist({
+        config:this                 //配置信息
+    });
+    //用户列表初始化
+    var userObj = $('.userlist-div').userlist({
+        config:this                 //配置信息
+    });
+    
+});
+$(function(){
+    $('#play').height($('#play').width()*3/4); //视频调整成4比3
+});
+
+//tab页相关操作
+var DOC =true;
+$('.chat-title span').on('click',function(){
+    if($(this).index()<4){
+        $(this).addClass('z-crt').siblings().removeClass('z-crt');
+    }
+    if( $(this).index()==1 ) {
+        $('.panes>.pane:eq(1)').show().siblings('.pane').hide();
+    }else if( $(this).index()==0 ){
+        $('.panes>.pane:eq(0)').show().siblings('.pane').hide();
+    } else if($(this).index()==2){
+        $('.panes>.pane:eq(2)').show().siblings('.pane').hide();
+        if(DOC){
+            DOC = false;
+            WISExchange.Resize(300, 225);
+        }
+    } else if($(this).index()==3){
+        $('.panes>.pane:eq(3)').show().siblings('.pane').hide();
+    }
+});
+</script>
+</html>
