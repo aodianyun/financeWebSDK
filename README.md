@@ -34,9 +34,9 @@ demo:
 `http://finance.aodianyun.com/dist/demo/mobile.html?nick=测试人员&uid=10004`
 
 
-[视频+PPT+聊天+问答 后台审核页面](http://finance.aodianyun.com/admin/mcsblock/wispublish?token=a07dVZvHzZPe8GZEAePcC3loHl8Tn5cBXyPpy3qrcdyLqCFhBCbaBJXQdbox)
+[视频+PPT+聊天+问答 后台审核页面](http://finance.aodianyun.com/admin/mcsblock/wismgr?token=a07dVZvHzZPe8GZEAePcC3loHl8Tn5cBXyPpy3qrcdyLqCFhBCbaBJXQdbox)
 
-`http://finance.aodianyun.com/admin/mcsblock/wispublish?token=a07dVZvHzZPe8GZEAePcC3loHl8Tn5cBXyPpy3qrcdyLqCFhBCbaBJXQdbox`
+`http://finance.aodianyun.com/admin/mcsblock/wismgr?token=a07dVZvHzZPe8GZEAePcC3loHl8Tn5cBXyPpy3qrcdyLqCFhBCbaBJXQdbox`
 
 注： **本demo仅供展示使用不可用于其他用途** 对应测试房间为 1478， 发布视频可使用 [MCS直播工具](http://www.aodianyun.com/aodianyun_doc/301) （直播账号 `dyy42446555` 密码 `123456`)
 或者使用OBS等推流软件 推流地址：`rtmp://13830.lsspublish.aodianyun.com/dyy_1736_133/a0c3d2dd3b4688f31da13991477980d9`
