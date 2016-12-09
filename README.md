@@ -1,6 +1,5 @@
 #功能模块HTML嵌入
 
-
 欢迎使用[金融解决方案](http://finance.aodianyun.com/info.html)HTML模块 目前模块有 `聊天模块` `问答模块` `用户列表`
 
 这些模块依赖于 `jquery1.10` 及以上版本 和 `dmshub.js`(不支持https)，使用之前需在[金融解决方案后台](http://finance.aodianyun.com/admin/)创建房间
@@ -9,7 +8,9 @@
 
 CDN 地址 `<script src="http://static.douyalive.com/dist/sdk/dmshub.js?v=1.0.0"></script>`
 
-demo:
+[文档有误？欢迎提交Issues](https://github.com/aodianyun/financeWebSDK/blob/master/README.md)
+
+## demo:
 
 以下页面均为静态页面  当前用户信息会存储在session中  请使用不同浏览器或隐身窗口 分别打开测试页面
 
