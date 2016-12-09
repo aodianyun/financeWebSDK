@@ -171,7 +171,7 @@
             $('.chat-list').scrollTop(100000);
       }
       chatF.prototype.appentSystemList = function(data){
-            if(this.opts.config.dmsConfig.ctrl_sysmsg==1){
+            if(this.opts.config.dmsConfig.ctrl_sysmsg==0){
               return;
             }
             var nick = data.nick;
