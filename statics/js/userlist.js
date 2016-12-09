@@ -58,7 +58,7 @@ jQuery.fn.sortElements = (function() {
                       console.log('翻页');
                       if(dms_data.List.length==0) self.page = false;
                       self.userInit(dms_data);
-                      self.updateTotal();
+                      self.updateTotal(dms_data.Total);
                       },function(dms_data){
                                  
                       });
@@ -66,41 +66,43 @@ jQuery.fn.sortElements = (function() {
                 }
             });
 
-            //自己进入操作
-            this.opts.config.dmsConfig.clientId = this.opts.config.dmsConfig.client_id;
-            this.appentList(this.opts.config.dmsConfig);
+            //先拉取第一页用户列表
+            this.opts.config.dmsUserListByPage(this.skip, this.num, function(data){
+                self.userInit(data);
+                var this_num = self.opts.config.dmsConfig.client_id in self.client_arr ? 0 : 1;
+                self.updateTotal(data.Total + this_num );
 
-            //ROP相关
-            this.opts.config.dmsUserListByPage(this.skip, this.num, function(dms_data){
-                  self.userInit(dms_data);
-                  self.updateTotal();
-            },function(dms_data){
-                     
+                //把自己加入用户列表  如果已经添加 将会忽略
+                self.opts.config.dmsConfig.clientId = self.opts.config.dmsConfig.client_id;
+                self.enterInfo(self.opts.config.dmsConfig);
+            },function(data){
+                  self.warnWindow(data.FlagString);
             });
-
+            
             this.opts.config.onEnter(function(dms_data) {
-                  console.log(dms_data);
                   self.enterInfo(dms_data);
-                  self.updateTotal();
+                  self.updateTotal(dms_data.total);
             });
 
             this.opts.config.onLeave(function(dms_data) {
                   self.leaveInfo(dms_data);
-                  self.updateTotal();
+                  self.updateTotal(dms_data.total);
             });
       }
       userF.prototype.userInit = function(data){
-               for(var i in data.List){
-                   var item = data.List[i];
-                   if( item.clientId in this.client_arr ){
-                       continue;
-                   }
-                  this.user_arr[item.uid] = this.user_arr[item.uid] ? (this.user_arr[item.uid]+1) : 1;  //增加该用户的连接计数
-                  this.appentList(item);
-              }
+            for(var i in data.List){
+                var item = data.List[i];
+                if( item.clientId in this.client_arr ){
+                    continue;
+                }
+                this.client_arr[item.clientId] = 1;
+                this.user_arr[item.uid] = this.user_arr[item.uid] ? (this.user_arr[item.uid]+1) : 1;  //增加该用户的连接计数
+                this.appentList(item);
+            }
       }
       //ROP相关
       userF.prototype.enterInfo = function(item){
+            this.client_arr[item.clientId] = 1;
             this.user_arr[item.uid] = this.user_arr[item.uid] ? (this.user_arr[item.uid]+1) : 1;  //增加该用户的连接计数
             this.appentList(item);
       }
@@ -116,8 +118,8 @@ jQuery.fn.sortElements = (function() {
                $('#'+item.uid).remove();
            }
       }
-      userF.prototype.updateTotal = function(){
-           $('#'+this.opts.totalId).html($('.'+this.opts.itemClass).length);
+      userF.prototype.updateTotal = function(num){
+           $('#'+this.opts.totalId).html( num );
            $('.user-item').sortElements(function(a, b) {
                 return $(a).attr('time') > $(b).attr('time') ? 1 : -1;
             });
