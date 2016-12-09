@@ -5,7 +5,9 @@
 
 这些模块依赖于 `jquery1.10` 及以上版本 和 `dmshub.js`(支持https)，使用之前需在[金融解决方案后台](http://finance.aodianyun.com/admin/)创建房间
 
-引用 地址： `<script src="http(s)://finance.aodianyun.com/dist/sdk/dmshub.js?v=1.0.0"></script>`
+引用 地址： `<script src="http://finance.aodianyun.com/dist/sdk/dmshub.js?v=1.0.0"></script>`
+
+CDN 地址 `<script src="http://static.douyalive.com/dist/sdk/dmshub.js?v=1.0.0"></script>`
 
 demo:
 
