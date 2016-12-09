@@ -30,12 +30,15 @@ jQuery.fn.sortElements = (function() {
     function userF(obj, options){
         this.obj = $(obj); 
         this.opts = options;
-        this.user_arr = [];
+        this.user_arr = {};
+        this.client_arr = {};
         this.skip = 0;
-        this.num = 4;
+        this.num = 10;
         this.page = true;
     }
     userF.prototype.init = function(){
+            var self = this;
+            
             this.opts.totalId = 'userTotal';
             this.opts.itemClass = 'user-item';
             this.opts.listId = 'userList';
@@ -87,48 +90,30 @@ jQuery.fn.sortElements = (function() {
             });
       }
       userF.prototype.userInit = function(data){
-               if(data.Total==0) return;
-               var client_arr = {};
                for(var i in data.List){
-                  if(client_arr[data.List[i].clientId]){
-                     client_arr[data.List[i].clientId] = 2;
-                  } else {
-                     client_arr[data.List[i].clientId] = 1;
-                  }
-               }
-               for(var i in data.List){
-                  var uid = data.List[i].uid;
-                  if(this.user_arr[uid]){
-                       this.user_arr[uid] ++;
-                   } else {
-                     this.user_arr[uid]=1;
+                   var item = data.List[i];
+                   if( item.clientId in this.client_arr ){
+                       continue;
                    }
-                  if($('#'+uid).length==0 && client_arr[data.List[i].clientId] == 1){
-                     uid!=this.opts.config.dmsConfig.uid && this.appentList(data.List[i]);
-                  }
+                  this.user_arr[item.uid] = this.user_arr[item.uid] ? (this.user_arr[item.uid]+1) : 1;  //增加该用户的连接计数
+                  this.appentList(item);
               }
       }
       //ROP相关
-      userF.prototype.enterInfo = function(data){
-           if(this.user_arr[data.uid]){
-               this.user_arr[data.uid] ++;
-           } else {
-             this.user_arr[data.uid]=1;
-           }
-           if($('#'+data.uid).length==0){
-            data.uid!=this.opts.config.dmsConfig.uid && this.appentList(data);
-           }
+      userF.prototype.enterInfo = function(item){
+            this.user_arr[item.uid] = this.user_arr[item.uid] ? (this.user_arr[item.uid]+1) : 1;  //增加该用户的连接计数
+            this.appentList(item);
       }
-      userF.prototype.leaveInfo = function(data){
-           if(this.user_arr[data.uid]){
-               this.user_arr[data.uid] --;
-               if(this.user_arr[data.uid]==0)
-               delete this.user_arr[data.uid];
+      userF.prototype.leaveInfo = function(item){
+           if( item.clientId in this.client_arr ){
+               delete this.client_arr[item.clientId];
            } else {
-             delete this.user_arr[data.uid];
+               return ;
            }
-           if(!this.user_arr[data.uid]){
-               data.uid!=this.opts.config.dmsConfig.uid && $('#'+data.uid).remove();
+           this.user_arr[item.uid] = this.user_arr[item.uid] ? (this.user_arr[item.uid]-1) : 0;  //减少该用户的连接计数
+           if( this.user_arr[item.uid] <= 0 ){
+               delete this.user_arr[item.uid];
+               $('#'+item.uid).remove();
            }
       }
       userF.prototype.updateTotal = function(){
@@ -139,8 +124,7 @@ jQuery.fn.sortElements = (function() {
       }
       //模板
       userF.prototype.template = function(){
-            var html = "";
-                html = '\
+            var html = '\
                        <div class="userlist-box">\
                             <div class="user-head">\
                             <span style="color:#FFFFFF;">&nbsp;&nbsp;在线用户：</span>\
@@ -157,17 +141,18 @@ jQuery.fn.sortElements = (function() {
       }
       //信息显示
       userF.prototype.appentList = function(data){
+              if($('#'+data.uid).length>0){  //已存在条目 不用重复添加
+                  return;
+              }
             var row = data.clientId.split('_')[0];
             var nick = data.nick;
             var uid =data.uid;
-            //var time = this.timeFormat(data.time);
             var html = '\
                          <div time="'+row+'" id="'+uid+'" class="'+this.opts.itemClass+'" >\
                              <div class="user-item-info">● '+this.opts.config.htmlspecialchars(nick)+'</div>\
                          </div>\
             ';
             $('#'+this.opts.listId).append(html);
-            //$('#'+this.opts.listId).scrollTop(100000);
       }
       //扩展
       $.fn.userlist = function(opts){
