@@ -7,13 +7,8 @@
       }
       askF.prototype.init = function(){
              var self = this;
-            if(this.opts.html){
-                 this.opts.textareaId ? '' : function(){alert('请传入textareaId（文本ID）！'); self.stop=true;}();
-                 this.opts.submitId ? '' : function(){alert('请传入submitId（发送按钮ID）！'); self.stop=true;}();
-            } else {
-                 this.opts.textareaId = 'askTxt';
-                 this.opts.submitId = 'askSubmit';
-            }
+             this.opts.textareaId = 'askTxt';
+             this.opts.submitId = 'askSubmit';
             if(this.stop){
               return;
             }
@@ -21,8 +16,7 @@
                 this.noSubmit = true;
             }
             //加载模板
-            var html = this.opts.html ? this.opts.html : this.template();
-            this.obj.append(html);
+            this.obj.append( this.template() );
 
             //发送
             $(document).on('click','#'+this.opts.submitId,function(){
@@ -62,8 +56,7 @@
       //模板
       askF.prototype.template = function(){
             var listHeight = this.obj.height()-96;
-            var html = "";
-                html = '\
+            var html = '\
                        <div class="chat-box">\
                                 <div class="chat-list" style="height:'+listHeight+'px">\
                                       <ul class="ask-message">\
@@ -122,10 +115,6 @@
       }
       //信息显示
       askF.prototype.appentList = function(data){
-            if(this.opts.html){
-              this.warnWindow('请更改你的appentList方法！');
-              return;
-            } 
             var msg_id = data.msg_id;
             var who = data.uid==this.opts.config.dmsConfig.uid ? '我问' : data.uid+'('+data.nick+')'+'问';
             var uid =data.uid;
@@ -145,10 +134,6 @@
       }
        //信息显示
       askF.prototype.reply = function(data){
-            if(this.opts.html){
-              this.warnWindow('请更改你的appentList方法！');
-              return;
-            }
             var msg_id = data.msg_id;
             var time = this.timeFormat(data.time);
             var content = data.content
@@ -164,9 +149,7 @@
       }
       //扩展
       $.fn.asklist = function(opts){
-          var defaults = {
-             
-          }
+          var defaults = {};
           var options = $.extend(defaults,opts);
           var askB = new askF(this, options);
           askB.init();

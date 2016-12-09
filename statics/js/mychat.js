@@ -6,16 +6,10 @@
          this.noSubmit = false;
       }
       chatF.prototype.init = function(){
-             var self = this;
-            if(this.opts.html){
-                 this.opts.emotionId ? '' : function(){alert('请传入emotionId（表情按钮ID）！'); self.stop=true; }();
-                 this.opts.textareaId ? '' : function(){alert('请传入textareaId（文本ID）！'); self.stop=true;}();
-                 this.opts.submitId ? '' : function(){alert('请传入submitId（发送按钮ID）！'); self.stop=true;}();
-            } else {
-                 this.opts.emotionId = 'emotion-img';
-                 this.opts.textareaId = 'chatTxt';
-                 this.opts.submitId = 'chatSubmit';
-            }
+            var self = this;
+            this.opts.emotionId = 'emotion-img';
+            this.opts.textareaId = 'chatTxt';
+            this.opts.submitId = 'chatSubmit';
             if(this.stop){
               return;
             }
@@ -23,8 +17,7 @@
                 this.noSubmit = true;
             }
             //加载模板
-            var html = this.opts.html ? this.opts.html : this.template();
-            this.obj.append(html);
+            this.obj.append( this.template() );
 
             //加载表情
             this.opts.emotionId ? this.loadEmotion() : '';
@@ -161,10 +154,6 @@
       }
       //信息显示
       chatF.prototype.appentList = function(data){
-            if(this.opts.html){
-              this.warnWindow('请更改你的appentList方法！');
-              return;
-            } 
             var ava = data.ava;
             var nick = data.nick;
             var uid =data.uid;
@@ -182,10 +171,6 @@
             $('.chat-list').scrollTop(100000);
       }
       chatF.prototype.appentSystemList = function(data){
-            if(this.opts.html){
-              this.warnWindow('请更改你的appentSystemList方法！');
-              return;
-            }
             if(this.opts.config.dmsConfig.ctrl_sysmsg==1){
               return;
             }
@@ -205,9 +190,7 @@
       }
       //扩展
       $.fn.chatlist = function(opts){
-          var defaults = {
-             
-          }
+          var defaults = {};
           var options = $.extend(defaults,opts);
           var chatB = new chatF(this, options);
           chatB.init();

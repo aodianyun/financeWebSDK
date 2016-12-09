@@ -1,4 +1,3 @@
-(function($){
 //排序扩展
 jQuery.fn.sortElements = (function() {
     var sort = [].sort;
@@ -26,28 +25,22 @@ jQuery.fn.sortElements = (function() {
         });
     };
 })();
-      function userF(obj, options){
-         this.obj = $(obj); 
-         this.opts = options;
-         this.user_arr = [];
-         this.skip = 0;
-         this.num = 4;
-         this.page = true;
-      }
-      userF.prototype.init = function(){
-            var self = this;
-            if(this.opts.html){
-                 this.opts.totalId ? '' : function(){alert('请传入totalId（当前用户总数元素上的id）！'); self.stop=true; }();
-                 this.opts.itemClass ? '' : function(){alert('请传入itemClass（每个用户所在元素的类）！'); self.stop=true;}();
-                 this.opts.listId ? '' : function(){alert('请传入listId（用户列表所在元素的id）！'); self.stop=true;}();
-            } else {
-                 this.opts.totalId = 'userTotal';
-                 this.opts.itemClass = 'user-item';
-                 this.opts.listId = 'userList';
-            }
+
+(function($){
+    function userF(obj, options){
+        this.obj = $(obj); 
+        this.opts = options;
+        this.user_arr = [];
+        this.skip = 0;
+        this.num = 4;
+        this.page = true;
+    }
+    userF.prototype.init = function(){
+            this.opts.totalId = 'userTotal';
+            this.opts.itemClass = 'user-item';
+            this.opts.listId = 'userList';
             //加载模板
-            var html = this.opts.html ? this.opts.html : this.template();
-            this.obj.append(html);
+            this.obj.append( this.template() );
             
             //scroll操作翻页
             $("#"+this.opts.listId).scroll(function(){
@@ -164,10 +157,6 @@ jQuery.fn.sortElements = (function() {
       }
       //信息显示
       userF.prototype.appentList = function(data){
-            if(this.opts.html){
-              this.warnWindow('请更改你的appentList方法！');
-              return;
-            }
             var row = data.clientId.split('_')[0];
             var nick = data.nick;
             var uid =data.uid;
@@ -182,9 +171,7 @@ jQuery.fn.sortElements = (function() {
       }
       //扩展
       $.fn.userlist = function(opts){
-          var defaults = {
-             
-          }
+          var defaults = {};
           var options = $.extend(defaults, opts);
           var userB = new userF(this, options);
           userB.init();
