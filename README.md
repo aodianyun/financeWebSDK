@@ -13,25 +13,25 @@ demo:
 
 以下页面均为静态页面  当前用户信息会存储在session中  请使用不同浏览器或隐身窗口 分别打开测试页面
 
-[简单视频聊天页面](http://finance.aodianyun.com/dist/demo/caijing.html?nick=张三&uid=10001)
+[简单视频聊天页面](http://aodianyun.github.io/financeWebSDK/caijing.html?nick=张三&uid=10001)
 
-`http://finance.aodianyun.com/dist/demo/caijing.html?nick=张三&uid=10001`
+`http://aodianyun.github.io/financeWebSDK/caijing.html?nick=张三&uid=10001`
 
-[简单视频聊天页面 手机版](http://finance.aodianyun.com/dist/demo/caijingmobile.html?nick=李四&uid=10002)
+[简单视频聊天页面 手机版](http://aodianyun.github.io/financeWebSDK/caijingmobile.html?nick=李四&uid=10002)
 
-`http://finance.aodianyun.com/dist/demo/caijingmobile.html?nick=李四&uid=10002`
+`http://aodianyun.github.io/financeWebSDK/caijingmobile.html?nick=李四&uid=10002`
 
 [简单视频聊天页面 后台审核页面](http://finance.aodianyun.com/admin/mcsblock/wisreview?token=a07dVZvHzZPe8GZEAePcC3loHl8Tn5cBXyPpy3qrcdyLqCFhBCbaBJXQdbox)
 
 `http://finance.aodianyun.com/admin/mcsblock/wisreview?token=a07dVZvHzZPe8GZEAePcC3loHl8Tn5cBXyPpy3qrcdyLqCFhBCbaBJXQdbox`
 
-[视频+PPT+聊天+问答](http://finance.aodianyun.com/dist/demo/index.html?nick=隔壁老王&uid=10003)
+[视频+PPT+聊天+问答](http://aodianyun.github.io/financeWebSDK/index.html?nick=隔壁老王&uid=10003)
 
-`http://finance.aodianyun.com/dist/demo/index.html?nick=隔壁老王&uid=10003`
+`http://aodianyun.github.io/financeWebSDK/index.html?nick=隔壁老王&uid=10003`
 
-[视频+PPT+聊天+问答 手机版](http://finance.aodianyun.com/dist/demo/mobile.html?nick=测试人员&uid=10004)
+[视频+PPT+聊天+问答 手机版](http://aodianyun.github.io/financeWebSDK/mobile.html?nick=测试人员&uid=10004)
 
-`http://finance.aodianyun.com/dist/demo/mobile.html?nick=测试人员&uid=10004`
+`http://aodianyun.github.io/financeWebSDK/mobile.html?nick=测试人员&uid=10004`
 
 
 [视频+PPT+聊天+问答 后台审核页面](http://finance.aodianyun.com/admin/mcsblock/wismgr?token=a07dVZvHzZPe8GZEAePcC3loHl8Tn5cBXyPpy3qrcdyLqCFhBCbaBJXQdbox)
@@ -40,6 +40,8 @@ demo:
 
 注： **本demo仅供展示使用不可用于其他用途** 对应测试房间为 1478， 发布视频可使用 [MCS直播工具](http://www.aodianyun.com/aodianyun_doc/301) （直播账号 `dyy42446555` 密码 `123456`)
 或者使用OBS等推流软件 推流地址：`rtmp://13830.lsspublish.aodianyun.com/dyy_1736_133/a0c3d2dd3b4688f31da13991477980d9`
+
+对应[金融解决方案后台管理帐号](http://finance.aodianyun.com/admin/)为  demo  密码为  demo （**请不要修改密码**）
 
 ## 使用方法
 
