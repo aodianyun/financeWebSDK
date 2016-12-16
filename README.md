@@ -14,25 +14,25 @@ CDN 地址 `<script src="http://static.douyalive.com/dist/sdk/dmshub.js?v=1.0.0"
 
 以下页面均为静态页面  当前用户信息会存储在session中  请使用不同浏览器或隐身窗口 分别打开测试页面
 
-[简单视频聊天页面](http://aodianyun.github.io/financeWebSDK/caijing.html?nick=张三&uid=10001)
+[简单视频聊天页面](http://github-page.aodianyun.com/caijing.html?nick=张三&uid=10001)
 
-`http://aodianyun.github.io/financeWebSDK/caijing.html?nick=张三&uid=10001`
+`http://github-page.aodianyun.com/caijing.html?nick=张三&uid=10001`
 
-[简单视频聊天页面 手机版](http://aodianyun.github.io/financeWebSDK/caijingmobile.html?nick=李四&uid=10002)
+[简单视频聊天页面 手机版](http://github-page.aodianyun.com/caijingmobile.html?nick=李四&uid=10002)
 
-`http://aodianyun.github.io/financeWebSDK/caijingmobile.html?nick=李四&uid=10002`
+`http://github-page.aodianyun.com/caijingmobile.html?nick=李四&uid=10002`
 
 [简单视频聊天页面 后台审核页面](http://finance.aodianyun.com/admin/mcsblock/wisreview?token=a07dVZvHzZPe8GZEAePcC3loHl8Tn5cBXyPpy3qrcdyLqCFhBCbaBJXQdbox)
 
 `http://finance.aodianyun.com/admin/mcsblock/wisreview?token=a07dVZvHzZPe8GZEAePcC3loHl8Tn5cBXyPpy3qrcdyLqCFhBCbaBJXQdbox`
 
-[视频+PPT+聊天+问答](http://aodianyun.github.io/financeWebSDK/index.html?nick=隔壁老王&uid=10003)
+[视频+PPT+聊天+问答](http://github-page.aodianyun.com/index.html?nick=隔壁老王&uid=10003)
 
-`http://aodianyun.github.io/financeWebSDK/index.html?nick=隔壁老王&uid=10003`
+`http://github-page.aodianyun.com/index.html?nick=隔壁老王&uid=10003`
 
-[视频+PPT+聊天+问答 手机版](http://aodianyun.github.io/financeWebSDK/mobile.html?nick=测试人员&uid=10004)
+[视频+PPT+聊天+问答 手机版](http://github-page.aodianyun.com/mobile.html?nick=测试人员&uid=10004)
 
-`http://aodianyun.github.io/financeWebSDK/mobile.html?nick=测试人员&uid=10004`
+`http://github-page.aodianyun.com/mobile.html?nick=测试人员&uid=10004`
 
 
 [视频+PPT+聊天+问答 后台审核页面](http://finance.aodianyun.com/admin/mcsblock/wismgr?token=a07dVZvHzZPe8GZEAePcC3loHl8Tn5cBXyPpy3qrcdyLqCFhBCbaBJXQdbox)
