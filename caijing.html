@@ -22,7 +22,7 @@
 
     <!--播放器 objectPlayer对象可用，具体请阅读objectPlayer相关文档-->
     <div id="play-container" class="video-box"></div>
-    <script type="text/javascript" src="//finance.aodianyun.com/helper/room_player.js?r=1478&id=play-container&chat=0"></script>
+    <script type="text/javascript" src="//finance.aodianyun.com/helper/room_player.js?r=1478&id=play-container&chat=0&MPS_JS=http://demo.aodianyun.com/lss/hlsplaytest/mpsplayer/lssplayer.js"></script>
     
     <!--聊天栏 请阅读聊天栏文档 按需求操作并引用依赖的js和css-->
     <div class="chat"></div>
@@ -73,6 +73,16 @@ var dmsObj = new DmsHub({
     var userObj = $('.userlist-div').userlist({
         config:this                 //配置信息
     });
+});
+
+dmsObj.onMsg('chat', function(topic, dmsData) {
+    var _word = dmsData.nick + '(' + dmsData.uid + '): ' + dmsData.content;
+    var _color = dmsData.uid==this.dmsConfig.uid ? '0xff0000' : '0x808080';  //'0x'+(Math.random()*0xffffff<<0).toString(16);
+    var _speed = 10; 
+    var _font = 20; 
+    if(_word){
+       objectPlayer.sendbarrage(_word,_font,_color,_speed,'微软雅黑');    
+    }
 });
 
 //开始直播操作
