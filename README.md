@@ -1,4 +1,4 @@
-#功能模块HTML嵌入
+# 功能模块HTML嵌入
 
 欢迎使用[金融解决方案](http://finance.aodianyun.com/info.html)HTML模块 目前模块有 `聊天模块` `问答模块` `用户列表`
 
@@ -10,41 +10,10 @@ CDN 地址 `<script src="http://static.douyalive.com/dist/sdk/dmshub.js?v=1.0.0"
 
 [文档有误？欢迎提交Issues](https://github.com/aodianyun/financeWebSDK/blob/master/README.md)
 
-## demo:
+## DEMO
 
 以下页面均为静态页面  当前用户信息会存储在session中  请使用不同浏览器或隐身窗口 分别打开测试页面
 
-[简单视频聊天页面](http://github-page.aodianyun.com/caijing.html?nick=张三&uid=10001)
-
-`http://github-page.aodianyun.com/caijing.html?nick=张三&uid=10001`
-
-[简单视频聊天页面 手机版](http://github-page.aodianyun.com/caijingmobile.html?nick=李四&uid=10002)
-
-`http://github-page.aodianyun.com/caijingmobile.html?nick=李四&uid=10002`
-
-[简单视频聊天页面 后台审核页面](http://finance.aodianyun.com/admin/mcsblock/wisreview?token=a07dVZvHzZPe8GZEAePcC3loHl8Tn5cBXyPpy3qrcdyLqCFhBCbaBJXQdbox)
-
-`http://finance.aodianyun.com/admin/mcsblock/wisreview?token=a07dVZvHzZPe8GZEAePcC3loHl8Tn5cBXyPpy3qrcdyLqCFhBCbaBJXQdbox`
-
-[视频+PPT+聊天+问答](http://github-page.aodianyun.com/index.html?nick=隔壁老王&uid=10003)
-
-`http://github-page.aodianyun.com/index.html?nick=隔壁老王&uid=10003`
-
-[视频+PPT+聊天+问答 手机版](http://github-page.aodianyun.com/mobile.html?nick=测试人员&uid=10004)
-
-`http://github-page.aodianyun.com/mobile.html?nick=测试人员&uid=10004`
-
-
-[视频+PPT+聊天+问答 后台审核页面](http://finance.aodianyun.com/admin/mcsblock/wismgr?token=a07dVZvHzZPe8GZEAePcC3loHl8Tn5cBXyPpy3qrcdyLqCFhBCbaBJXQdbox)
-
-`http://finance.aodianyun.com/admin/mcsblock/wismgr?token=a07dVZvHzZPe8GZEAePcC3loHl8Tn5cBXyPpy3qrcdyLqCFhBCbaBJXQdbox`
-
-注： **本demo仅供展示使用不可用于其他用途** 对应测试房间为 1478， 发布视频可使用 [MCS直播工具](http://www.aodianyun.com/aodianyun_doc/301) （直播账号 `dyy42446555` 密码 `123456`)
-或者使用OBS等推流软件 推流地址：`rtmp://13830.lsspublish.aodianyun.com/dyy_1736_133/a0c3d2dd3b4688f31da13991477980d9`
-
-对应[金融解决方案后台管理帐号](http://finance.aodianyun.com/admin/)为  demo  密码为  demo （**请不要修改密码**）
-
-## 使用方法
 
 ``` html
 <script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
@@ -135,8 +104,39 @@ CDN 地址 `<script src="http://static.douyalive.com/dist/sdk/dmshub.js?v=1.0.0"
     /* 还有一些和具体功能模块相关的API接口及辅助方法 会在具体模块中用到 */
 </script>
 ```
+[简单视频聊天页面](http://github-page.aodianyun.com/caijing.html?nick=张三&uid=10001)
 
-## 聊天模块 （mychat.js）
+`http://github-page.aodianyun.com/caijing.html?nick=张三&uid=10001`
+
+[简单视频聊天页面 手机版](http://github-page.aodianyun.com/caijingmobile.html?nick=李四&uid=10002)
+
+`http://github-page.aodianyun.com/caijingmobile.html?nick=李四&uid=10002`
+
+[简单视频聊天页面 后台审核页面](http://finance.aodianyun.com/admin/mcsblock/wisreview?token=a07dVZvHzZPe8GZEAePcC3loHl8Tn5cBXyPpy3qrcdyLqCFhBCbaBJXQdbox)
+
+`http://finance.aodianyun.com/admin/mcsblock/wisreview?token=a07dVZvHzZPe8GZEAePcC3loHl8Tn5cBXyPpy3qrcdyLqCFhBCbaBJXQdbox`
+
+[视频+PPT+聊天+问答](http://github-page.aodianyun.com/index.html?nick=隔壁老王&uid=10003)
+
+`http://github-page.aodianyun.com/index.html?nick=隔壁老王&uid=10003`
+
+[视频+PPT+聊天+问答 手机版](http://github-page.aodianyun.com/mobile.html?nick=测试人员&uid=10004)
+
+`http://github-page.aodianyun.com/mobile.html?nick=测试人员&uid=10004`
+
+
+[视频+PPT+聊天+问答 后台审核页面](http://finance.aodianyun.com/admin/mcsblock/wismgr?token=a07dVZvHzZPe8GZEAePcC3loHl8Tn5cBXyPpy3qrcdyLqCFhBCbaBJXQdbox)
+
+`http://finance.aodianyun.com/admin/mcsblock/wismgr?token=a07dVZvHzZPe8GZEAePcC3loHl8Tn5cBXyPpy3qrcdyLqCFhBCbaBJXQdbox`
+
+注： **本demo仅供展示使用不可用于其他用途** 对应测试房间为 1478， 发布视频可使用 [MCS直播工具](http://www.aodianyun.com/aodianyun_doc/301) （直播账号 `dyy42446555` 密码 `123456`)
+或者使用OBS等推流软件 推流地址：`rtmp://13830.lsspublish.aodianyun.com/dyy_1736_133/a0c3d2dd3b4688f31da13991477980d9`
+
+对应[金融解决方案后台管理帐号](http://finance.aodianyun.com/admin/)为  demo  密码为  demo （**请不要修改密码**）
+
+
+
+## 聊天模块
 
 聊天模块提供基本的文字和表情聊天功能，后台提供对应的关键词过滤及聊天审核功能
 
@@ -206,7 +206,7 @@ chatF.prototype.appentSystemList = function(data){   // 当有用户进入房间
 }
 ```
 
-## 问答模块 （myask.js）
+## 问答模块
 
 问答模块提供基本的提问功能，后台提供提问审核及回答功能
 
@@ -275,7 +275,7 @@ askF.prototype.reply = function(data){   // 收到提问信息时及调用此方
 }
 ```
 
-## 用户列表模块 (userlist.js）
+## 用户列表模块
 
 问答模块提供基本当前房间在线用户显示功能，`DmsHub` 中传入的 `rank` 用于排序
 
