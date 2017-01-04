@@ -306,15 +306,13 @@ var $_GET = (function(){
 var dmsObj = new DmsHub({
     debug: typeof console.log == 'function',
     room_id: 1478,
-    uid: $_GET['uid'] || 100000,
-    nick: $_GET['nick'] || 'Test',
+    uid: $_GET['uid'] || 4353786,
+    nick: $_GET['nick'] || '李老师',
     ava: $_GET['ava'] || '',
-    token:$_GET['token'] || 'd0bb3drW0mC53zrJxhVGme2mLgESsF3pQnZe6K5tmUJP-QZSgSnCoI_LnF1jlu3kewpbUZULuob0RScw7KJmCgIg9AFfQ7vNhZZRiMx1etHoLbs7glLeLW8l5Q',
+    token:$_GET['token'] || 'd4d8NGFvHY4E16HhK_RpH5I5is_9lOVPqnY6HuyR40b8a0LFS8GxSznZrfjMn2trgAFKbqqWHyPFEXeRRfRLZ_hCkbN2wB2o8ms85JOK4LUCDOTiK0XLXmrUwKzvLJmy64s',
 },function(){
         //加载文档
         getDoc(1);
-        initDms();
-
         //加载白板
         $("#wisIframe").load(function () {
         WISExchange.Init({
@@ -352,50 +350,45 @@ if( typeof ADAddPubEvent == "undefined" ){
     };
 }
 ADAddPubEvent(function (code, msg) {
-                console.log("ADPubEvent", code, msg);
-                if (code == 0) {
-                    if (msg == "NetStream.Publish.PublisherExists") {
-                        $('.play-btn').addClass("btn-success");
-                        $('.play-btn').removeClass("btn-warning");
-                        $('.play-btn').html('开始直播');
-                        window.stopPub();
-                        dlg("发布流已经被占用咯");
-                    }
-                    else if (msg == "Video.Capture.Error") {
-                        $('.play-btn').addClass("btn-success");
-                        $('.play-btn').removeClass("btn-warning");
-                        $('.play-btn').html('开始直播');
-                        window.stopPub();
-                        dlg("打开摄像头失败，请检查摄像头是否被占用，摄像头是否有安装哦");
-                    }
-                    else if (msg == "NetConnection.Connect.Failed") {
-                        $('.play-btn').addClass("btn-success");
-                        $('.play-btn').removeClass("btn-warning");
-                        $('.play-btn').html('开始直播');
-                        window.stopPub();
-                        dlg("连接失败，请稍后再试哟");
-                    }
-                    else if (msg == "Audio.Capture.Error") {
-                        $('.play-btn').addClass("btn-success");
-                        $('.play-btn').removeClass("btn-warning");
-                        $('.play-btn').html('开始直播');
-                        window.stopPub();
-                        dlg("打开麦克风失败，请检查麦克风是否被占用，麦克风是否有安装哦");
-                    }
-                    else if (msg == "Cam ID wrong, ID:-1, Cam sum:0") {
-                        $('.play-btn').addClass("btn-success");
-                        $('.play-btn').removeClass("btn-warning");
-                        $('.play-btn').html('开始直播');
-                        window.stopPub();
-                        dlg("您没有安装摄像头哦");
-                    }
-                    else if (msg == "PublishManager::StopPublishAsyn") {
-                        //停止发布
-                    }
-                    else if ("NetStream.Publish.Start") {
-                        //开始发布
-                    }
-                }
+    console.log("ADPubEvent", code, msg);
+    if (code != 0) {
+        return ;
+    }
+    if (msg == "NetStream.Publish.PublisherExists") {
+        $('.play-btn').addClass("btn-success");
+        $('.play-btn').removeClass("btn-warning");
+        $('.play-btn').html('开始直播');
+        window.stopPub();
+        dlg("发布流已经被占用咯");
+    } else if (msg == "Video.Capture.Error") {
+        $('.play-btn').addClass("btn-success");
+        $('.play-btn').removeClass("btn-warning");
+        $('.play-btn').html('开始直播');
+        window.stopPub();
+        dlg("打开摄像头失败，请检查摄像头是否被占用，摄像头是否有安装哦");
+    } else if (msg == "NetConnection.Connect.Failed") {
+        $('.play-btn').addClass("btn-success");
+        $('.play-btn').removeClass("btn-warning");
+        $('.play-btn').html('开始直播');
+        window.stopPub();
+        dlg("连接失败，请稍后再试哟");
+    } else if (msg == "Audio.Capture.Error") {
+        $('.play-btn').addClass("btn-success");
+        $('.play-btn').removeClass("btn-warning");
+        $('.play-btn').html('开始直播');
+        window.stopPub();
+        dlg("打开麦克风失败，请检查麦克风是否被占用，麦克风是否有安装哦");
+    } else if (msg == "Cam ID wrong, ID:-1, Cam sum:0") {
+        $('.play-btn').addClass("btn-success");
+        $('.play-btn').removeClass("btn-warning");
+        $('.play-btn').html('开始直播');
+        window.stopPub();
+        dlg("您没有安装摄像头哦");
+    } else if (msg == "PublishManager::StopPublishAsyn") {
+        //停止发布
+    } else if ("NetStream.Publish.Start") {
+        //开始发布
+    }
 });
 function ChoseDoc(doc_id) {
     WISExchange.ChoseDoc({
@@ -441,46 +434,6 @@ function stateRecord(state) {
     }
 }
 
-$(function(){
-     //上下一页
-     $('.next-list').click(function(){
-         var page = $('.page-txt').html();
-         getDoc(page*1+1);
-         $('.page-txt').html(page*1+1);
-     });
-     $('.last-list').click(function(){
-         var page = $('.page-txt').html();
-         if(page*1==1) return;
-         getDoc(page*1-1);
-         $('.page-txt').html(page*1-1);
-     });
-     $('.doc-body ul li').each(function(){
-         var id = $(this).prop('css');
-          ChoseDoc(id);
-     });
-     //开始结束直播
-     $(document).on('click','.play-btn',function(){
-          if($(this).hasClass("btn-success")){
-             $(this).addClass("btn-warning");
-             $(this).removeClass("btn-success");
-             $(this).html('结束直播');
-             window.startPub();
-          } else {
-             $(this).addClass("btn-success");
-             $(this).removeClass("btn-warning");
-             $(this).html('开始直播');
-             window.stopPub();
-          }
-     });
-     //开始结束录制
-     $(document).on('click','.record-btn',function(){
-                      if($(this).html()=="开始录制"){
-                         stateRecord(1);
-                      } else {
-                         stateRecord(0);
-                      }
-    });
-});
 //表情
 $('.emotion_btn').qqFace({
     id: 'facebox',
@@ -493,8 +446,10 @@ $('.emotion_btn').qqFace({
 });
 
 $('.chat-save').click(function(){
- if($(this).hasClass('disabled')) return;
-   publish();
+    if($(this).hasClass('disabled')){
+        return;
+    }
+    publish();
 });
 function getDoc(page){
     var data = {};
@@ -625,220 +580,240 @@ function dmsPublish(args, error){
       });
 }
 function publishHtml(dmsData){
-     var msg_list = $('#dmsMessage').children();
-        if (msg_list.length >= 100) { //聊天记录保存100条
-            msg_list[0].remove();
-        }
+    var msg_list = $('#dmsMessage').children();
+    if (msg_list.length >= 100) { //聊天记录保存100条
+        msg_list[0].remove();
+    }
 
-        var mode = /^([0-9]+)$/;
-        var time = dmsData.time;
-        if (mode.test(dmsData.time)) {
-            time = formatDate2(dmsData.time);
-        }
-        var msg ='';
-        var uid = dmsData.uid;
-        var content = dmsData.content;
-        msg += '\
-                <li>\
-                   <ul class="list-title list-inline">\
-                      <li><img class="chat-icon" src='+dmsData.ava+' /></li>\
-                      <li>'+dmsData.nick+ '('+uid+')</li>\
-                      <li>' + time + '</li>\
-                   </ul>\
-                   <p>' + replaceEm(dmsCommonHandle.htmlspecialchars(dmsData.content)) + '</p>\
-                <li>';
-        $('#dmsMessage').append(msg);
-        $('.chat-list').scrollTop($('#dmsMessage').height());
+    var mode = /^([0-9]+)$/;
+    var time = dmsData.time;
+    if (mode.test(dmsData.time)) {
+        time = formatDate2(dmsData.time);
+    }
+    var msg ='';
+    var uid = dmsData.uid;
+    var content = dmsData.content;
+    msg += '\
+            <li>\
+               <ul class="list-title list-inline">\
+                  <li><img class="chat-icon" src='+dmsData.ava+' /></li>\
+                  <li>'+dmsData.nick+ '('+uid+')</li>\
+                  <li>' + time + '</li>\
+               </ul>\
+               <p>' + replaceEm(dmsCommonHandle.htmlspecialchars(dmsData.content)) + '</p>\
+            <li>';
+    $('#dmsMessage').append(msg);
+    $('.chat-list').scrollTop($('#dmsMessage').height());
 }
 function systemHtml(dmsData,num) {
     var msg_list = $('#dmsMessage').children();
-        if (msg_list.length >= 100) { //聊天记录保存100条
-            msg_list[0].remove();
-        }
+    if (msg_list.length >= 100) { //聊天记录保存100条
+        msg_list[0].remove();
+    }
 
-        var mode = /^([0-9]+)$/;
-        var time = dmsData.time;
-        if (mode.test(dmsData.time)) {
-            time = formatDate2(dmsData.time);
-        }
-        var msg ='';
-        var uid = "";
-        if(dmsData.clientId){
-             uid = dmsData.clientId.split('_')[2];
-        }
-        //var status = dmsData.state == 1 ? '进入房间' : '退出房间';
-        var status = '进入房间';
-        var status_txt="";
-        if(num==1){
-            status_txt = uid + status;
-        } else if(num==2){
-            status_txt = "系统已开始直播";
-        } else if(num==3){
-            status_txt = "系统已结束直播";
-        }
-        msg += '\
-                <li>\
-                   <ul class="list-title list-inline">\
-                      <li><span class="icon"></span></li>\
-                      <li> 系统提示 </li>\
-                      <li>' + time + '</li>\
-                   </ul>\
-                   <p>' + status_txt + '</p>\
-                <li>';
-        if(num==1){
-            if(dmsData.state==1){
+    var mode = /^([0-9]+)$/;
+    var time = dmsData.time;
+    if (mode.test(dmsData.time)) {
+        time = formatDate2(dmsData.time);
+    }
+    var msg ='';
+    var uid = "";
+    if(dmsData.clientId){
+        uid = dmsData.clientId.split('_')[2];
+    }
+    //var status = dmsData.state == 1 ? '进入房间' : '退出房间';
+    var status = '进入房间';
+    var status_txt="";
+    if(num==1){
+        status_txt = dmsData.nick + '(' + uid + ')' + status;
+    } else if(num==2){
+        status_txt = "系统已开始直播";
+    } else if(num==3){
+        status_txt = "系统已结束直播";
+    }
+    msg += '\
+            <li>\
+               <ul class="list-title list-inline">\
+                  <li><span class="icon"></span></li>\
+                  <li> 系统提示 </li>\
+                  <li>' + time + '</li>\
+               </ul>\
+               <p>' + status_txt + '</p>\
+            <li>';
+    if(num==1){
+        if(dmsData.state==1){
             $('#dmsMessage').append(msg);
-            }
+        }
+    } else {
+        $('#dmsMessage').append(msg);
+    }
+    //$('.chat-list').scrollTop($('#dmsMessage').height());
+}
+function formatDate2(now){
+    if(now){
+        now = new Date(now*1000);
+    }
+    else{
+        now = new Date();
+    }
+    var year = now.getFullYear() ;
+    var month = now.getMonth()+1;
+    var date = now.getDate();
+    var hour = now.getHours();
+    if(month < 10){
+        month = '0' + month.toString();
+    }      
+    var minute = now.getMinutes();    
+    if(date < 10){
+        date = '0' + date.toString();
+    } 
+    if(hour < 10){
+        hour = '0' + hour.toString();
+    }      
+    var minute = now.getMinutes();    
+    if(minute < 10){
+        minute = '0' + minute.toString();
+    } 
+    return month+'-'+date+' '+hour+":"+minute;
+}
+function question(dmsData){
+    var mode = /^([0-9]+)$/;
+    var time = dmsData.time;
+    if (mode.test(dmsData.time)) {
+        time = formatDate2(dmsData.time);
+    }
+    var msg="";
+    var content =dmsData.content;
+    var uid = dmsData.uid;
+    var msg_id = dmsData.msg_id;
+
+    msg += '\
+            <li class="'+msg_id+' clearfix">\
+               <ul class="list-title list-inline" >\
+                  <li>'+dmsData.nick+ '('+uid+')</li>\
+                  <li><a class="btn btn-link" onclick="delanswer(\''+msg_id+'\')" >删除</a >\
+                      <a class="btn btn-link answer-btn" onclick="answer(\''+msg_id+'\')"  >回复</a >' + time + '</li>\
+               </ul>\
+               <p class="fl">提问：' + replaceEm(dmsCommonHandle.htmlspecialchars(content)) + '</p>\
+               <span class="reply-content"></span>\
+            <li>';
+    $('.ask-message').prepend(msg);
+}
+function answer (msg_id) {
+    $('.ask-txt').val('');
+    $('#msg_id').val(msg_id);
+    $('#replyModal').modal();
+}
+
+$('#replyModal').on('shown.bs.modal',function(){
+     $('#replyModal').find('textarea').focus();
+});
+
+function delanswer(msg_id){
+   var data = {};
+    data.msg_id = msg_id;
+    dmsObj.delQuestion(data,function(data){
+    },function(data){
+    });
+}
+$('.answer-sure').click(function(){
+    var data = {};
+        data.msg_id = $('#msg_id').val();
+        data.content  = $('.ask-txt').val();
+        dmsObj.sendAnswer(data,function(data){
+    },function(data){
+
+    });
+});
+$('.clear-all').click(function(){
+    $('#clearModalAnswer').modal();
+});
+$('.clear-sure-answer').click(function(){
+    var data = {};
+    dmsObj.delQuestionReview(data,function(data){
+        $('.ask-message').empty();
+    },function(data){
+        dlg(data.FlagString);
+    });
+});
+function replayContent (dmsData) {
+    var content =dmsData.content;
+    var msg_id = dmsData.msg_id;
+    $('.ask-message').find('.'+msg_id).find('.answer-btn').hide();
+    $('.ask-message').find('.'+msg_id).find('.reply-content').html('回复：'+replaceEm(dmsCommonHandle.htmlspecialchars(content)));
+    $('.ask-message').find('.'+msg_id).find('.reply-content').show();
+}
+
+dmsObj.onMsg('addquestion', function(topic, dmsData) {
+    question(dmsData);
+});
+dmsObj.onMsg('answer', function(topic, dmsData) {
+    replayContent(dmsData);
+});
+
+dmsObj.onMsg('chat', function(topic, dmsData) {
+    publishHtml(dmsData);
+});
+
+dmsObj.onMsg('delquestion', function(topic, dmsData) {
+    $('.'+dmsData.msg_id).remove();
+});
+dmsObj.onMsg('review', function(topic, dmsData) {
+    if(dmsData.state==1){
+        reviewHtml(dmsData);
+    }
+});
+
+dmsObj.onStartPublish(function(dmsData) {
+    systemHtml(dmsData, 2);
+});
+dmsObj.onStopPublish(function(dmsData) {
+    systemHtml(dmsData, 3);
+});
+dmsObj.onEnter(function(dmsData) {
+    systemHtml(dmsData,1);
+});
+
+
+$(function(){
+    //上下一页
+    $('.next-list').click(function(){
+        var page = $('.page-txt').html();
+        getDoc(page*1+1);
+        $('.page-txt').html(page*1+1);
+    });
+    $('.last-list').click(function(){
+        var page = $('.page-txt').html();
+        if(page*1==1) return;
+        getDoc(page*1-1);
+        $('.page-txt').html(page*1-1);
+    });
+    $('.doc-body ul li').each(function(){
+        var id = $(this).prop('css');
+        ChoseDoc(id);
+    });
+    //开始结束直播
+    $(document).on('click','.play-btn',function(){
+        if($(this).hasClass("btn-success")){
+        $(this).addClass("btn-warning");
+        $(this).removeClass("btn-success");
+        $(this).html('结束直播');
+        window.startPub();
+    } else {
+        $(this).addClass("btn-success");
+        $(this).removeClass("btn-warning");
+        $(this).html('开始直播');
+        window.stopPub();
+    }
+    });
+    //开始结束录制
+    $(document).on('click','.record-btn',function(){
+        if($(this).html()=="开始录制"){
+            stateRecord(1);
         } else {
-            $('#dmsMessage').append(msg);
+            stateRecord(0);
         }
-        //$('.chat-list').scrollTop($('#dmsMessage').height());
-}
- function formatDate2(now){
-        if(now){
-            now = new Date(now*1000);
-        }
-        else{
-            now = new Date();
-        }
-        var year = now.getFullYear() ;
-        var month = now.getMonth()+1;
-        var date = now.getDate();
-        var hour = now.getHours();
-        if(month < 10){
-            month = '0' + month.toString();
-        }      
-        var minute = now.getMinutes();    
-        if(date < 10){
-            date = '0' + date.toString();
-        } 
-        if(hour < 10){
-            hour = '0' + hour.toString();
-        }      
-        var minute = now.getMinutes();    
-        if(minute < 10){
-            minute = '0' + minute.toString();
-        } 
-        return month+'-'+date+' '+hour+":"+minute;
-}
-    function question(dmsData){
-        var mode = /^([0-9]+)$/;
-        var time = dmsData.time;
-        if (mode.test(dmsData.time)) {
-            time = formatDate2(dmsData.time);
-        }
-        var msg="";
-        var content =dmsData.content;
-        var uid = dmsData.uid;
-        var msg_id = dmsData.msg_id;
-
-        msg += '\
-                <li class="'+msg_id+' clearfix">\
-                   <ul class="list-title list-inline" >\
-                      <li>'+dmsData.nick+ '('+uid+')</li>\
-                      <li><a class="btn btn-link" onclick="delanswer(\''+msg_id+'\')" >删除</a >\
-                          <a class="btn btn-link answer-btn" onclick="answer(\''+msg_id+'\')"  >回复</a >' + time + '</li>\
-                   </ul>\
-                   <p class="fl">提问：' + replaceEm(dmsCommonHandle.htmlspecialchars(content)) + '</p>\
-                   <span class="reply-content"></span>\
-                <li>';
-        $('.ask-message').prepend(msg);
-    }
-    function answer (msg_id) {
-        $('.ask-txt').val('');
-        $('#msg_id').val(msg_id);
-        $('#replyModal').modal();
-    }
-    $('#replyModal').on('shown.bs.modal',function(){
-         $('#replyModal').find('textarea').focus();
     });
-    function delanswer(msg_id){
-       var data = {};
-              data.msg_id = msg_id;
-              dmsObj.delQuestion(data,function(data){
-                  
-              },function(data){
-                   
-              });
-    }
-    $('.answer-sure').click(function(){
-            var data = {};
-              data.msg_id = $('#msg_id').val();
-              data.content  = $('.ask-txt').val();
-              dmsObj.sendAnswer(data,function(data){
-                  
-              },function(data){
-                   
-              });
-    });
-    $('.clear-all').click(function(){
-       $('#clearModalAnswer').modal();
-    });
-    $('.clear-sure-answer').click(function(){
-        var data = {};
-              dmsObj.delQuestionReview(data,function(data){
-                    $('.ask-message').empty();
-              },function(data){
-                   dlg(data.FlagString);
-              });
-    });
-    function replayContent (dmsData) {
-        var content =dmsData.content;
-        var msg_id = dmsData.msg_id;
-        $('.ask-message').find('.'+msg_id).find('.answer-btn').hide();
-        $('.ask-message').find('.'+msg_id).find('.reply-content').html('回复：'+replaceEm(dmsCommonHandle.htmlspecialchars(content)));
-        $('.ask-message').find('.'+msg_id).find('.reply-content').show();
-    }
-    initDms = function () {
-          dmsObj.onMsg('addquestion', function(topic, dmsData) {
-                       question(dmsData);
-              }, function(topic, dms_data) {
-                  return true;
-            });
-           dmsObj.onMsg('answer', function(topic, dmsData) {
-                       replayContent(dmsData);
-              }, function(topic, dms_data) {
-                  return true;
-            });
-            dmsObj.onMsg('present', function(topic, dmsData) {
-                   if(dmsData.clientId.split('_')[2]!=dmsObj.dmsConfig.uid && dmsData.clientId.indexOf('_')>-1){
-                    systemHtml(dmsData,1);
-                    }
-              }, function(topic, dms_data) {
-                  return true;
-            });
-             dmsObj.onMsg('chat', function(topic, dmsData) {
-                       publishHtml(dmsData);
-              }, function(topic, dms_data) {
-                  return true;
-            });
-              dmsObj.onMsg('StartPublish', function(topic, dmsData) {
-                       if(dmsData.app==dmsObj.dmsConfig.app && dmsData.stream==dmsObj.dmsConfig.stream){
-                       systemHtml(dmsData,2);
-                     }
-              }, function(topic, dms_data) {
-                  return true;
-            });
-               dmsObj.onMsg('StopPublish', function(topic, dmsData) {
-                       if(dmsData.app==dmsObj.dmsConfig.app && dmsData.stream==dmsObj.dmsConfig.stream){
-                       systemHtml(dmsData,3);
-                     }
-              }, function(topic, dms_data) {
-                  return true;
-            });
-                dmsObj.onMsg('delquestion', function(topic, dmsData) {
-                       $('.'+dmsData.msg_id).remove();
-              }, function(topic, dms_data) {
-                  return true;
-            });
-                 dmsObj.onMsg('review', function(topic, dmsData) {
-                       if(dmsData.state==1){
-                        reviewHtml(dmsData);
-                    }
-              }, function(topic, dms_data) {
-                  return true;
-            });
-    }
-
+});
 </script>
 </html>

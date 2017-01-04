@@ -1,0 +1,183 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<script src="./statics/js/jquery-1.10.2.min.js"></script>
+<link rel="stylesheet" type="text/css" href="./statics/css/common.css">
+<script src="http://finance.aodianyun.com/dist/sdk/dmshub.js"></script>
+<title>奥点云-金融解决方案</title>
+<style type="text/css">
+/*页面css，可根据你自己的需求修改*/
+.title{position: absolute;height: 50px;line-height: 50px;}
+.video-box{position: absolute;top:50px;left:340px;width: 700px;height: 520px;}
+.white-box{position: absolute;top:50px;left: 30px;width: 300px;height: 225px;}
+.chat{width: 300px;height: 285px;position:absolute;top:285px;left: 30px;}
+.userlist-div{width: 300px;height: 220px;position: absolute;top:50px;left: 1050px;}
+.switch{margin-left: 10px;cursor: pointer;color: orange;}
+.ask{
+    width: 300px;height: 300px;position: absolute;top:270px;left: 1050px;
+}
+/**/
+
+.qq-login-btn{
+    float: right; 
+    margin-right: 20px;
+}
+.qq-login-btn img{
+    width: 150px;
+    height: 30px;
+}
+</style>
+</head>
+<body class="clearfix">
+    <!--顶部title（这里以你自己的页面为主）-->
+    <div class="title"><span class="room-title">房间标题</span><span style="margin-left: 10px;color:red;display: none;" class="room-state">正在直播</span> <span class="switch">切换</span>
+    </div>
+    
+<script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101299332" data-redirecturi="http://test25.aodianyun.com/admin/proxy/connectqq" charset="utf-8"></script>
+
+<div id="qqLoginBtn" class="qq-login-btn" >
+    <img src="http://qzonestyle.gtimg.cn/qzone/vas/opensns/res/img/Connect_logo_3.png">
+</div>
+<script type="text/javascript">
+   //调用QC.Login方法，指定btnId参数将按钮绑定在容器节点中
+   QC.Login({
+       //btnId：插入按钮的节点id，必选
+       btnId:"qqLoginBtn",    
+       //用户需要确认的scope授权项，可选，默认all
+       scope:"all",
+       //按钮尺寸，可用值[A_XL| A_L| A_M| A_S|  B_M| B_S| C_S]，可选，默认B_S
+       size: "A_XL"
+   }, function(reqData, opts){//登录成功
+       //根据返回数据，更换按钮显示状态方法
+       var dom = document.getElementById(opts['btnId']),
+       _logoutTemplate=[
+            //头像
+            '<span><img src="{figureurl}" class="{size_key}"/></span>',
+            //昵称
+            '<span>{nickname}</span>',
+            //退出
+            '<span><a href="javascript:QC.Login.signOut();">退出</a></span>'    
+       ].join("");
+       dom && (dom.innerHTML = QC.String.format(_logoutTemplate, {
+           nickname : QC.String.escHTML(reqData.nickname), //做xss过滤
+           figureurl : reqData.figureurl
+       }));
+   }, function(opts){//注销成功
+         alert('QQ登录 注销成功');
+   }
+);
+</script>
+
+
+    <!--播放器 objectPlayer对象可用，具体请阅读objectPlayer相关文档-->
+    <div id="play-container" class="video-box"></div>
+    <script type="text/javascript" src="http://finance.aodianyun.com/helper/room_player.js?r=1478&id=play-container&chat=0&MPS_JS=http://demo.aodianyun.com/lss/hlsplaytest/mpsplayer/lssplayer.js"></script>
+    
+    <!--聊天栏 请阅读聊天栏文档 按需求操作并引用依赖的js和css-->
+    <div class="chat"></div>
+    <script src="./statics/js/mychat.js"></script>
+    <script src="./statics/js/jquery.qqFace.js"></script>
+    
+    <!--问答栏 请阅读问答栏文档 按需求操作并引用依赖的js和css-->
+    <div class="ask"></div>
+    <script src="./statics/js/myask.js"></script>
+
+    <!--用户列表栏 请阅读用户列表文档 按需求操作并引用依赖的js和css-->
+    <div class="userlist-div"></div>
+    <script src="./statics/js/userlist.js"></script>
+    
+    <!--白板 WISExchange对象可用，具体请阅读WISExchange相关文档-->
+    <iframe id="wis-container" class="white-box"></iframe>
+    <script type="text/javascript" src="http://finance.aodianyun.com/helper/room_wis.js?r=1478&id=wis-container"></script>
+
+</body>
+<script type="text/javascript">
+var $_GET = (function(){
+    var url = window.document.location.href.toString();
+    var u = url.split("?");
+    if(typeof(u[1]) == "string"){
+        u = u[1].split("&");
+        var get = {};
+        for(var i in u){
+            var j = u[i].split("=");
+            get[j[0]] = decodeURIComponent(j[1]);
+        }
+        return get;
+    } else {
+        return {};
+    }
+})();
+
+/* DmsHub 消息接收模块 你需要设置 房间id（room_id） 当前用户id（uid） 用户昵称（nick） 用户头像（ava） */
+
+var dmsObj = new DmsHub({
+    debug: typeof console.log == 'function',
+    room_id: 1478,
+    uid: $_GET['uid'] || 100000,
+    nick: $_GET['nick'] || 'Test',
+    ava: $_GET['ava'] || ''
+}, function () {
+    //聊天栏初始化
+    var chatObj = $('.chat').chatlist({
+        config:this,        //配置信息
+        emotionPath:'./statics/img/arclist/', //表情存放路径
+        emotionbtn:'./statics/img/emotion.png', //表情按钮路径
+        systemImg:'./statics/img/system.png'   //系统提示图片路径
+    });
+    //问答栏初始化
+    var askObj = $('.ask').asklist({
+        config:this                 //配置信息
+    });
+    //用户列表初始化
+    var userObj = $('.userlist-div').userlist({
+        config:this                 //配置信息
+    });
+});
+
+dmsObj.onMsg('chat', function(topic, dmsData) {
+    var _word = dmsData.nick + '(' + dmsData.uid + '): ' + dmsData.content;
+    var _color = dmsData.uid==this.dmsConfig.uid ? '0xff0000' : '0x808080';  //'0x'+(Math.random()*0xffffff<<0).toString(16);
+    var _speed = 10; 
+    var _font = 20; 
+    if(_word){
+       objectPlayer.sendbarrage(_word,_font,_color,_speed,'微软雅黑');    
+    }
+});
+
+
+//开始直播操作
+dmsObj.onStartPublish(function(dms_data) {
+    $('.room-state').show();
+});
+
+//结束直播操作
+dmsObj.onStopPublish(function(dms_data) {
+    $('.room-state').hide();
+});
+
+//切换操作
+var switchD = 1;
+$(function(){
+    $(document).on('click','.switch',function(){
+       if(switchD==1){
+            switchD=0;
+             $('.white-box').stop(true).animate({'width':'700px','left':'340px','height':'520px'},0,function(){
+                WISExchange.Resize(700, 520);
+             });
+             $('.video-box').stop(true).animate({'width':'300px','left':'30px','height':'225px'},0,function(){
+                 
+             });
+         } else {
+            switchD=1;
+             $('.video-box').stop(true).animate({'width':'700px','left':'340px','height':'520px'},0);
+             $('.white-box').stop(true).animate({'width':'300px','left':'30px','height':'225px'},0,function(){
+                 WISExchange.Resize(300, 225);
+             });
+         }
+    });
+});
+
+</script>
+</html>
