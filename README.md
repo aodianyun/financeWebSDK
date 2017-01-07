@@ -20,11 +20,11 @@ CDN 地址 `<script src="http://static.douyalive.com/dist/sdk/dmshub.js?v=1.0.0"
 <script src="http://finance.aodianyun.com/dist/sdk/dmshub.js?v=1.0.0>"></script>
 <link rel="stylesheet" type="text/css" href="./statics/css/common.css">
 
-<!--嵌入播放器 objectPlayer对象可用，具体请阅读objectPlayer相关文档-->
+<!--嵌入播放器 需要把参数r=XXX修改为你的房间id objectPlayer对象可用，具体请阅读objectPlayer相关文档  http://www.aodianyun.com/aodianyun_doc/254  -->
 <div id="play-container" class="video-box"></div>
 <script type="text/javascript" src="http://finance.aodianyun.com/helper/room_player.js?r=1478&id=play-container&chat=0"></script>
 
-<!--嵌入PPT白板 WISExchange对象可用，具体请阅读WISExchange相关文档-->
+<!--嵌入PPT白板 需要把参数r=XXX修改为你的房间id WISExchange对象可用，具体请阅读WISExchange相关文档  http://www.aodianyun.com/aodianyun_doc/365  -->
 <iframe id="wis-container" class="white-box"></iframe>
 <script type="text/javascript" src="http://finance.aodianyun.com/helper/room_wis.js?r=1478&id=wis-container"></script>
     
