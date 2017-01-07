@@ -50,6 +50,7 @@ CDN 地址 `<script src="http://static.douyalive.com/dist/sdk/dmshub.js?v=1.0.0"
         ava: '',  //用户头像 默认为 默认头像
         rank: 100,  //用户排序值 为大于0的整数 影响用户列表排序 数值小的排在前面  默认为当前时间戳
         ext: ''  //额外参数 格式为字符串 你可以用来扩展 用户角色、等级、性别等信息  默认为空
+        //token: "ac5dVKXnNeNue6"   //教师端需添加认证token  认证token通过 RoomMgr.getAuthToken 接口获取
     }, function () {  //连接成功后的回调  可以在这里加载模块
         this.debug && console.log(this);
         //聊天栏初始化
@@ -112,9 +113,9 @@ CDN 地址 `<script src="http://static.douyalive.com/dist/sdk/dmshub.js?v=1.0.0"
 
 `http://github-page.aodianyun.com/caijingmobile.html?nick=李四&uid=10002`
 
-[简单视频聊天页面 后台审核页面](http://finance.aodianyun.com/admin/mcsblock/wisreview?token=a07dVZvHzZPe8GZEAePcC3loHl8Tn5cBXyPpy3qrcdyLqCFhBCbaBJXQdbox)
+[简单视频聊天页面 后台审核页面](http://finance.aodianyun.com/admin/mcsblock/wisreview?token=ac5dVKXnNeNue6E2fX6TzEzNHv-mdfnYDSssbQJjT2XpAQssFfm9Cl4626ZmQ6fu7kdQ4zbB1Q7iR4Lr7v6PsJOTqeTPGmLzz9TE1CTf7KrNE7xfbACP6iN9qDvxVyc)
 
-`http://finance.aodianyun.com/admin/mcsblock/wisreview?token=a07dVZvHzZPe8GZEAePcC3loHl8Tn5cBXyPpy3qrcdyLqCFhBCbaBJXQdbox`
+`http://finance.aodianyun.com/admin/mcsblock/wisreview?token=ac5dVKXnNeNue6E2fX6TzEzNHv-mdfnYDSssbQJjT2XpAQssFfm9Cl4626ZmQ6fu7kdQ4zbB1Q7iR4Lr7v6PsJOTqeTPGmLzz9TE1CTf7KrNE7xfbACP6iN9qDvxVyc`
 
 [视频+PPT+聊天+问答](http://github-page.aodianyun.com/index.html?nick=隔壁老王&uid=10003)
 
@@ -124,10 +125,13 @@ CDN 地址 `<script src="http://static.douyalive.com/dist/sdk/dmshub.js?v=1.0.0"
 
 `http://github-page.aodianyun.com/mobile.html?nick=测试人员&uid=10004`
 
+[白板发布工具嵌入页面](http://github-page.aodianyun.com/publish/index.html?token=ac5dVKXnNeNue6E2fX6TzEzNHv-mdfnYDSssbQJjT2XpAQssFfm9Cl4626ZmQ6fu7kdQ4zbB1Q7iR4Lr7v6PsJOTqeTPGmLzz9TE1CTf7KrNE7xfbACP6iN9qDvxVyc&nick=李老师&uid=8888)
 
-[视频+PPT+聊天+问答 后台审核页面](http://finance.aodianyun.com/admin/mcsblock/wismgr?token=a07dVZvHzZPe8GZEAePcC3loHl8Tn5cBXyPpy3qrcdyLqCFhBCbaBJXQdbox)
+`http://github-page.aodianyun.com/publish/index.html?token=ac5dVKXnNeNue6E2fX6TzEzNHv-mdfnYDSssbQJjT2XpAQssFfm9Cl4626ZmQ6fu7kdQ4zbB1Q7iR4Lr7v6PsJOTqeTPGmLzz9TE1CTf7KrNE7xfbACP6iN9qDvxVycnick=李老师&uid=8888`
 
-`http://finance.aodianyun.com/admin/mcsblock/wismgr?token=a07dVZvHzZPe8GZEAePcC3loHl8Tn5cBXyPpy3qrcdyLqCFhBCbaBJXQdbox`
+[视频+PPT+聊天+问答 后台审核页面](http://finance.aodianyun.com/admin/mcsblock/wismgr?token=ac5dVKXnNeNue6E2fX6TzEzNHv-mdfnYDSssbQJjT2XpAQssFfm9Cl4626ZmQ6fu7kdQ4zbB1Q7iR4Lr7v6PsJOTqeTPGmLzz9TE1CTf7KrNE7xfbACP6iN9qDvxVyc)
+
+`http://finance.aodianyun.com/admin/mcsblock/wismgr?token=ac5dVKXnNeNue6E2fX6TzEzNHv-mdfnYDSssbQJjT2XpAQssFfm9Cl4626ZmQ6fu7kdQ4zbB1Q7iR4Lr7v6PsJOTqeTPGmLzz9TE1CTf7KrNE7xfbACP6iN9qDvxVyc`
 
 注： **本demo仅供展示使用不可用于其他用途** 对应测试房间为 1478， 发布视频可使用 [MCS直播工具](http://www.aodianyun.com/aodianyun_doc/301) （直播账号 `dyy42446555` 密码 `123456`)
 或者使用OBS等推流软件 推流地址：`rtmp://13830.lsspublish.aodianyun.com/dyy_1736_133/a0c3d2dd3b4688f31da13991477980d9`
