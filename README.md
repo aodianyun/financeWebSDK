@@ -8,6 +8,10 @@
 
 CDN 地址 `<script src="http://static.douyalive.com/dist/sdk/dmshub.js?v=1.0.0"></script>`
 
+代码仓库  [https://github.com/aodianyunGroup/financeWebSDK](https://github.com/aodianyunGroup/financeWebSDK)
+
+备用仓库  [https://git.oschina.net/wowngasb/financeWebSDK](https://git.oschina.net/wowngasb/financeWebSDK)
+
 [文档有误？欢迎提交Issues](https://github.com/aodianyun/financeWebSDK/blob/master/README.md)
 
 ## DEMO
