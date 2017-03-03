@@ -15,16 +15,8 @@
 <script type="text/javascript" src="./statics/js/jquery-1.11.1.min.js" ></script>
 <script type="text/javascript" src="./statics/js/bootstrap.min.js" ></script>
 <script type="text/javascript" src="http://cdn.aodianyun.com/wis/exchange.js" ></script>
-
-<script type="text/javascript" src="./statics/js/ZeroClipboard/ZeroClipboard.min.js" ></script>
-<script type="text/javascript" src="./statics/js/My97DatePicker/WdatePicker.js" ></script>
-
 <script type="text/javascript" src="./statics/js/dlg.js" ></script>
-<script type="text/javascript" src="./statics/js/formvail.js" ></script>
-
 <script type="text/javascript" src="./statics/js/jquery.qqFace.js" ></script>
-<script type="text/javascript" src="./statics/js/wsp.js" ></script>
-
 <script src="//58jinrongyun.com/dist/sdk/dmshub.js?v=1.2"></script>
 
 </head>
@@ -508,7 +500,7 @@ function reviewHtml(dmsData){
                         <a class="btn btn-link" onclick="reviewOper(\''+msg_id+'\',2)"  >发布</a >\
                           '+time+'</li>\
                      </ul>\
-                      <p class="fl">'+replaceEm(dmsCommonHandle.htmlspecialchars(content))+'</p>\
+                      <p class="fl">'+replaceEm(dmsObj.htmlspecialchars(content))+'</p>\
                       <span class="reply-content"></span>\
                   <li>';
         $('.review-message').prepend(msg);
@@ -562,11 +554,9 @@ function publish(){
             uid: dmsObj.dmsConfig.uid,
             nick: dmsObj.dmsConfig.nick,
             ava: dmsObj.dmsConfig.ava,
-            url: '{"g1Uid":"' + dmsObj.dmsConfig.uid + '"}',
             content: content,
             time: Math.ceil(new Date().getTime() / 1000)
         };
-        dmsData.url = dmsCommonHandle.encode(dmsData.url);
         dmsPublish(dmsData);
         t_obj.val('');
         window.setTimeout('$("#aodianyun-dms-text")[0].focus();', 100);
@@ -600,7 +590,7 @@ function publishHtml(dmsData){
                   <li>'+dmsData.nick+ '('+uid+')</li>\
                   <li>' + time + '</li>\
                </ul>\
-               <p>' + replaceEm(dmsCommonHandle.htmlspecialchars(dmsData.content)) + '</p>\
+               <p>' + replaceEm(dmsObj.htmlspecialchars(dmsData.content)) + '</p>\
             <li>';
     $('#dmsMessage').append(msg);
     $('.chat-list').scrollTop($('#dmsMessage').height());
@@ -694,7 +684,7 @@ function question(dmsData){
                   <li><a class="btn btn-link" onclick="delanswer(\''+msg_id+'\')" >删除</a >\
                       <a class="btn btn-link answer-btn" onclick="answer(\''+msg_id+'\')"  >回复</a >' + time + '</li>\
                </ul>\
-               <p class="fl">提问：' + replaceEm(dmsCommonHandle.htmlspecialchars(content)) + '</p>\
+               <p class="fl">提问：' + replaceEm(dmsObj.htmlspecialchars(content)) + '</p>\
                <span class="reply-content"></span>\
             <li>';
     $('.ask-message').prepend(msg);
@@ -740,7 +730,7 @@ function replayContent (dmsData) {
     var content =dmsData.content;
     var msg_id = dmsData.msg_id;
     $('.ask-message').find('.'+msg_id).find('.answer-btn').hide();
-    $('.ask-message').find('.'+msg_id).find('.reply-content').html('回复：'+replaceEm(dmsCommonHandle.htmlspecialchars(content)));
+    $('.ask-message').find('.'+msg_id).find('.reply-content').html('回复：'+replaceEm(dmsObj.htmlspecialchars(content)));
     $('.ask-message').find('.'+msg_id).find('.reply-content').show();
 }
 
