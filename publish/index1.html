@@ -1,0 +1,836 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no"> 
+<title>管理控制台</title>
+<link rel="stylesheet" type="text/css" href="./statics/css/common.css">
+<link rel="stylesheet" type="text/css" href="./statics/css/bootstrap.min.css">
+
+<script type="text/javascript" src="./statics/js/jquery-1.11.1.min.js" ></script>
+<script type="text/javascript" src="./statics/js/bootstrap.min.js" ></script>
+<script type="text/javascript" src="http://cdn.aodianyun.com/wis/exchange.js" ></script>
+<script type="text/javascript" src="./statics/js/dlg.js" ></script>
+<script type="text/javascript" src="./statics/js/jquery.qqFace.js" ></script>
+<script src="//58jinrongyun.com/dist/sdk/dmshub.js?v=1.2"></script>
+
+</head>
+<style type="text/css">
+body,html{width: 100%;height: 100%;}
+.fl{float: left;}
+.fr{float: right;}
+.save{width: 16%;text-align:center;background-color:#0298D4 ;height: 90%;line-height: 43px;display: inline-block;float: left;cursor: pointer;color: white;}
+.icon{display: inline-block;width: 26px;height: 26px;vertical-align: middle;background: url('./statics/img/iconbg.png') no-repeat -394px 1px;margin-top: 11px;}
+.cfm{margin: 0px auto;width: 1290px;height: 670px;}
+.box{width:100%;height: 100%;overflow: hidden;}
+.box-body{width: 100%;height: 625px;}
+.box-foot{width: 100%;height: 40px;border-top: 1px solid gray;}
+
+.oper-btn{display: inline-block;width: 100px;height: 30px;text-align: center;line-height: 30px;border:1px solid gray;margin: 5px;color: black;cursor: pointer;}
+
+.box .white{height: 100%;width: 890px;background-color: rgba(0,0,0,0.75);}
+.box .right{height: 100%;width: 360px;overflow: hidden;position: relative;}
+.right .play{height: 330px;background-color: rgba(0,0,0,0.55);}
+.right .tab-content{height: 295px;overflow: auto;}
+
+.ask-box .ask-list {overflow: auto;}
+.ask-box .ask-list p{margin-top: 5px;color: red;width: 120px;word-break:break-all;}
+.ask-box .list-title li{display: inline-block;vertical-align: middle;}
+.ask-box .list-title li:first-child{width: 140px;}
+.ask-box .list-title li:last-child{float: right;margin-top: -5px;}
+.reply-content{float: right;}
+.reply-content{float: right;width: 200px;word-break:break-all;}
+
+.chat-box .chat-list {overflow: auto;height: 215px;}
+.chat-box .chat-list p{margin-left: 29px;margin-top: 5px;color: red;}
+.chat-box .list-title li{display: inline-block;vertical-align: middle;}
+.chat-box .list-title li:last-child{float: right;margin-top: 5px;}
+.chat-box .chat-icon{display: inline-block;width: 26px;height: 26px;vertical-align: middle;border-radius:20px;}
+.chat-box .system-icon{display: inline-block;width: 26px;height: 26px;vertical-align: middle;background: url('./statics/img/iconbg.png') no-repeat -394px 1px;}
+.chat-box .chat-reply{width: 100%;border-top: 1px solid gray;height: 80px;overflow: hidden;}
+.chat-reply .chat-face{width: 90%;height: 25px;line-height: 25px;margin: 1px 5%;}
+.chat-box .emotion_btn{background: url('./statics/img/iconbg.png') -325px 0px no-repeat;height: 20px;width: 20px;display: inline-block;margin-top: 4px;}
+.chat-reply .chat-input{width: 90%;height: 43px;margin: 5px 5%;overflow: hidden;}
+.chat-reply .chat-input input{width: 80%;height: 90%;float:left; color: black;}
+
+
+.tabbable{width: 100%;height: 40px;margin-top: -10px;}
+.tabbable ul li a{width: 100%;height: 100%;display: inline-block;text-decoration: none;border:1px solid gray;border-left: none;}
+.tabbable ul li a:link{color: none;}
+.tabbable ul li{width: 72px;height: 38px;text-align: center;padding: 0px !important;line-height: 40px;float: left;}
+.tabbable ul li.active a{border-bottom: 1px solid white;}
+
+.tab-content .online-box {}
+.tab-content .online-box .online-reserch{width: 100%;height: 40px;}
+.tab-content .online-box .online-content{width: 100%;}
+.tab-content .online-box .online-content li{width: 100%;height: 40px;line-height: 40px;}
+
+.doc-head{height: 50px;width: 100%;}
+.webuploader-container{float: right;margin: 7px;}
+.doc-body{height: 214px;overflow: auto;}
+.doc-body ul li{border-bottom: 1px solid gray;padding: 7px 0px;}
+.doc-body ul li:hover{background-color: #E6E6E6;}
+.doc-body ul li span{display: inline-block;margin-left: 10px;vertical-align: middle;}
+.doc-body ul li span:first-child{width: 20%;text-align: center;}
+.doc-body ul li span:last-child{width: 70%;}
+.doc-body ul li span img{width: 65px;height: 48px;cursor: pointer;}
+.doc-foot{height: 31px;position: absolute;bottom: 5px;width: 100%;text-align: center;}
+.pagination{margin:0px !important;}
+.del-btn{padding: 0px !important;}
+.pagination>li>a, .pagination>li>span{color:#1E1E1E;  !important;border:1px solid #1E1E1E;margin-left: 5px}
+.play-btn{margin-left: 10px;margin-bottom: 5px;}
+.record-btn{margin-left: 10px;margin-bottom: 5px;background-color: white;color: black;}
+.pagination>li>a:hover{color: white !important;background-color: #1E1E1E;}
+.current-doc{display: inline-block;width: 200px;height: 50px;line-height: 50px;word-break:break-all;margin-left: 20px;overflow: hidden;cursor: Default;} 
+
+.page-span{display: inline-block;width: 150px}
+.page-span input{display: inline-block;}
+.page-span .page-checkbox{width: 13px;height: 13px;}
+.page-span .page-text{width: 60px;height: 20px;margin-left: 5px;}
+@-moz-document url-prefix(){
+  .page-span .page-text{height: 25px;}
+}
+ul.review-message ul li a.btn{padding:6px 0px; }
+</style>
+<body style="overflow:hidden;">
+        <div class="box">
+             <div class="box-body">
+                  <div class="white fl">
+                      <iframe src="" style="height: 100%;width:100%;" id="wisIframe" ></iframe>
+                  </div>
+                  <div class="right fl">
+                      <div class="tabbable">
+                      <ul class="list-unstyled">
+                            <li class="active">
+                              <a href="#online" data-toggle="tab">在线</a>
+                           </li>
+                           <li>
+                              <a href="#check" data-toggle="tab">审核</a>
+                           </li>
+                           <li>
+                              <a href="#ask" data-toggle="tab">问答</a>
+                           </li>
+                           <li>
+                              <a href="#chat" data-toggle="tab">聊天</a>
+                           </li>
+                           <li>
+                              <a href="#doc" data-toggle="tab">文档</a>
+                           </li>
+                      </ul>
+                  </div>
+                      <div class="tab-content">
+                          <div class="tab-pane active online-box" id="online">
+                            <div class="online-search">
+                                <input type="" name=""> <button class="btn btn-primary">搜索</button>
+                            </div>
+                            <div class="online-content">
+                                <ul class="list-unstyled">
+                                  <li>fggfgfgfg
+                                  </li>
+                                  <li>gtrrytytytyty</li>
+                                  <li>gtrrytytytyty</li>
+                                </ul>
+                            </div>
+                          </div>
+                          <div class="tab-pane ask-box" id="check" >
+                                 <div class="ask-list">
+                                    <ul class="review-message list-unstyled" style="padding:10px;">
+                                         
+                                    </ul>
+                                 </div>
+                          </div> 
+                          <div class="tab-pane ask-box" id="ask">
+                                 <div class="ask-list">
+                                    <ul class="ask-message list-unstyled" style="padding:10px;">
+                                        
+                                    </ul>
+                                 </div>
+                          </div>
+                          <div class="tab-pane chat-box" id="chat" >
+                                 <div class="chat-list">
+                                    <ul id="dmsMessage" class="list-unstyled" style="padding:10px;">
+                                    </ul>
+                                 </div>
+                                 <div class="chat-reply">
+                                    <div class="chat-face"><a class="emotion_btn" href="javascript:void(0)"></a></div>
+                                    <div class="chat-input">
+                                      <input id="aodianyun-dms-text"><span class="chat-save save">发送</span>
+                                    </div>
+                                </div>
+                          </div> 
+                          <div class="tab-pane" id="doc">
+                                 <div class="doc-head"><span class="current-doc"></span></div>
+                                 <div class="doc-body">
+                                     <ul class="list-unstyled doc-list">
+                                     </ul>
+                                 </div>
+                                 <div class="doc-foot">
+                                    <ul class="pagination">
+                                       <li><a href="javascript:void(0)" class="last-list">上一页</a></li>
+                                       <li><a href="javascript:void(0)" class="page-txt">1</a></li>
+                                       <li><a href="javascript:void(0)" class="next-list">下一页</a></li>
+                                    </ul>
+                                 </div>
+                          </div>  
+                      </div>
+                  </div>
+             </div>
+             <div class="box-foot">
+                  <div class="oper fl" style="padding-top:3px;">
+                     <span class="btn btn-success play-btn">开始直播</span>
+                     <span  class="btn btn-primary record-btn">开始录制</span>
+                     <span class="page-span"><input type="hidden" class="page-all" /><input type="hidden" class="page-cur" /><input type="checkbox" class="page-checkbox form-control" /> 自动翻页<input class="page-text form-control" type="text" /></span>
+                  </div>
+                                  <script type="text/javascript">
+                                  //白板翻页js
+                                  var pageIN;
+                                  $(document).ready(function () {
+                                      $('.page-checkbox').change(function(){
+                                            clearInterval(pageIN);
+                                            var page  = $('.page-text').val();
+                                            var page_all = $('.page-all').val();
+                                            var formCheckObj = new formCheck();
+                                            if(page==""){
+                                              dlg('请输入翻页间隔时间！');
+                                              $(this).prop('checked',false);
+                                              return;
+                                            }
+                                            if(!formCheckObj.checkInt(page) || page < 0){
+                                              dlg('翻页间隔时间必须为正数数字！');
+                                              $(this).prop('checked',false);
+                                              return;
+                                            }
+                                            if($(this).is(':checked')){
+                                                  pageIN = setInterval(function(){
+                                                  var page_cur = $('.page-cur').val();
+                                                   if(page_cur==page_all){
+                                                    WISExchange.ToPage(1)
+                                                  } else {
+                                                    WISExchange.NextPage();
+                                                  }
+                                                },page*1000)
+                                            }
+                                      });
+                                  });
+                            </script>
+             </div>
+        </div>
+</body>
+<!-- 回复信息 -->
+<div class="modal fade bs-example-modal-sm" id="replyModal">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content message_align">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title">回复信息</h4>
+      </div>
+      <div class="modal-body">
+        <textarea class="form-control ask-txt"></textarea>
+      </div>
+      <div class="modal-footer">
+           <input type="hidden" id="msg_id"/>
+           <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+           <a class="btn btn-success answer-sure" data-dismiss="modal">确定</a>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- 删除确认 -->
+<div class="modal fade bs-example-modal-sm" id="delModal">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content message_align">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title">确认删除</h4>
+      </div>
+      <div class="modal-body">
+        <p>确定要删除该文档？</p>
+      </div>
+      <div class="modal-footer">
+           <input type="hidden" id="doc_id"/>
+           <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+           <a class="btn btn-success del-sure" data-dismiss="modal">确定</a>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade bs-example-modal-sm" id="loading" tabindex="-1" role="dialog" aria-labelledby="dlgLoadingLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">文件上传中</h4>
+      </div>
+      <div class="modal-body text-center">
+        <img src="./statics/img/loading.gif" width="60"><br>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 清空确认问答 -->
+<div class="modal fade" id="clearModalAnswer">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content message_align">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title">清空确认</h4>
+      </div>
+      <div class="modal-body">
+        <p>确定要清空所有信息？</p>
+      </div>
+      <div class="modal-footer">
+           <input type="hidden" id="msg_id"/>
+           <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+           <a class="btn btn-success clear-sure-answer" data-dismiss="modal">确定</a>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<script type="text/javascript">
+$(function(){
+  $('.box .white').width($('.box').width() - 360);
+  $(window).resize(function(){
+    $('.box .white').width($('.box').width() - 360);
+    WISExchange.Resize($('.box .white').width(),$('.box .white').height());
+  });
+});
+var $_GET = (function(){
+    var url = window.document.location.href.toString();
+    var u = url.split("?");
+    if(typeof(u[1]) == "string"){
+        u = u[1].split("&");
+        var get = {};
+        for(var i in u){
+            var j = u[i].split("=");
+            get[j[0]] = decodeURIComponent(j[1]);
+        }
+        return get;
+    } else {
+        return {};
+    }
+})();
+
+//配置dmscomfig
+var dmsObj = new DmsHub({
+    debug: typeof console.log == 'function',
+    room_id: 1478,
+    uid: $_GET['uid'] || 4353786,
+    nick: $_GET['nick'] || '李老师',
+    ava: $_GET['ava'] || '',
+    token:$_GET['token'] || 'd4d8NGFvHY4E16HhK_RpH5I5is_9lOVPqnY6HuyR40b8a0LFS8GxSznZrfjMn2trgAFKbqqWHyPFEXeRRfRLZ_hCkbN2wB2o8ms85JOK4LUCDOTiK0XLXmrUwKzvLJmy64s',
+},function(){
+        //加载文档
+        getDoc(1);
+        //加载白板
+        $("#wisIframe").load(function () {
+        WISExchange.Init({
+            iframe: "wisIframe",
+            onSuccess: function (info) {
+                console.log("onSuccess", info);
+                     //开始结束录制
+                     if(info.recordId=="") {
+                       $('.record-btn').html('开始录制');
+                     } else {
+                       $('.record-btn').html('结束录制');
+                     }
+            },
+            onDocLoad: function (info) {
+                console.log("onDocLoad", info);
+                $('.page-all').val(info.page);
+                $('.current-doc').html('当前文档：'+decodeURI(info.fileName));
+                $('.current-doc').prop('title',decodeURI(info.fileName));
+            },
+            onPageChange: function (info) {
+                $('.page-cur').val(info.page);
+                console.log("onPageChange", info);
+            },
+            onFailure: function (info) {
+                console.log("onFailure", info.error);
+            }
+        });
+    });
+    $('#wisIframe').prop({'src':dmsObj.dmsConfig.wis_record_url});
+});
+// AUTH_TOKEN = '<?=$token?>';
+
+if( typeof ADAddPubEvent == "undefined" ){
+    var ADAddPubEvent = function(callback){
+    };
+}
+ADAddPubEvent(function (code, msg) {
+    console.log("ADPubEvent", code, msg);
+    if (code != 0) {
+        return ;
+    }
+    if (msg == "NetStream.Publish.PublisherExists") {
+        $('.play-btn').addClass("btn-success");
+        $('.play-btn').removeClass("btn-warning");
+        $('.play-btn').html('开始直播');
+        window.stopPub();
+        dlg("发布流已经被占用咯");
+    } else if (msg == "Video.Capture.Error") {
+        $('.play-btn').addClass("btn-success");
+        $('.play-btn').removeClass("btn-warning");
+        $('.play-btn').html('开始直播');
+        window.stopPub();
+        dlg("打开摄像头失败，请检查摄像头是否被占用，摄像头是否有安装哦");
+    } else if (msg == "NetConnection.Connect.Failed") {
+        $('.play-btn').addClass("btn-success");
+        $('.play-btn').removeClass("btn-warning");
+        $('.play-btn').html('开始直播');
+        window.stopPub();
+        dlg("连接失败，请稍后再试哟");
+    } else if (msg == "Audio.Capture.Error") {
+        $('.play-btn').addClass("btn-success");
+        $('.play-btn').removeClass("btn-warning");
+        $('.play-btn').html('开始直播');
+        window.stopPub();
+        dlg("打开麦克风失败，请检查麦克风是否被占用，麦克风是否有安装哦");
+    } else if (msg == "Cam ID wrong, ID:-1, Cam sum:0") {
+        $('.play-btn').addClass("btn-success");
+        $('.play-btn').removeClass("btn-warning");
+        $('.play-btn').html('开始直播');
+        window.stopPub();
+        dlg("您没有安装摄像头哦");
+    } else if (msg == "PublishManager::StopPublishAsyn") {
+        //停止发布
+    } else if ("NetStream.Publish.Start") {
+        //开始发布
+    }
+});
+function ChoseDoc(doc_id) {
+    WISExchange.ChoseDoc({
+        docId: doc_id,
+        success: function () {
+        },
+        failure: function (error) {
+        }
+    });
+}
+
+function startRecord() {
+    stateRecord(1);
+}
+
+function stopRecord() {
+    stateRecord(0);
+}
+
+function stateRecord(state) {
+    if( state==1 ){
+        WISExchange.StartRecord({
+            success: function () {
+                $('.record-btn').html('结束录制');
+                console.log("StartRecord success");
+            },
+            failure: function (error) {
+                dlg('开始直播后才可以录制','提示','modal-sm');
+                 console.log("StartRecord error", error);
+            }
+        });
+    } else {
+        WISExchange.StopRecord({
+            success: function () {
+                $('.record-btn').html('开始录制');
+                console.log("StopRecord success");
+            },
+            failure: function (error) {
+                dlg('结束录制异常：' + error,'提示','modal-sm');
+                console.log("StopRecord error", error);
+            }
+        });
+    }
+}
+
+//表情
+$('.emotion_btn').qqFace({
+    id: 'facebox',
+    assign: 'aodianyun-dms-text',
+    callback: function(obj) {
+        obj.css('margin-top', '-227px');
+        obj.css('left', 5);
+    },
+    path: './statics/img/arclist/' //表情存放的路径
+});
+
+$('.chat-save').click(function(){
+    if($(this).hasClass('disabled')){
+        return;
+    }
+    publish();
+});
+function getDoc(page){
+    var data = {};
+    data.page = page;
+    dmsObj.listWisDoc(data,function(data){
+         var html = "";
+         for(var i in data.Info.list){
+             html +='\
+                      <li class="'+data.Info.list[i]['id']+' doc-li" ><input type="hidden" name="docId" value="'+data.Info.list[i]['id']+'" /><span><img  src="'+data.Info.list[i]['pdfUrl']+'?page/1/density/150/quality/80/resize/300"></span>\
+                           <span><p style="cursor: pointer;" >'+decodeURI(data.Info.list[i]['fileName'])+'</p>\
+                                 <a href="javascript:void(0)" class="btn del-btn">删除</a>\
+                                 <input type="hidden" value="'+data.Info.list[i]['id']+'" />\
+                           </span>\
+              </li>';
+         }
+         $('.doc-list').empty();
+         $('.doc-list').append(html);
+    },function(data){
+        dlg(data.FlagString,'提示','modal-sm');
+    });
+}
+$(document).on('click','.doc-li',function(){
+      var id = $(this).find('input[name=docId]').val();
+      ChoseDoc(id);
+});
+$(document).on('click','.del-btn',function(e){
+     $('#delModal').find('#doc_id').val($(this).next().val());
+     $('#delModal').modal();
+     e.stopPropagation();
+});
+function reviewOper(msg_id,state){
+     var data = {};
+              data.msg_id = msg_id;
+              data.state  = state;
+              dmsObj.dmsMsgReview(data,function(data){
+                    $('.'+msg_id).remove();
+              },function(data){
+                   dlg(data.FlagString);
+              });
+}
+function reviewHtml(dmsData){
+       var mode = /^([0-9]+)$/;
+        var time = dmsData.time;
+        if (mode.test(dmsData.time)) {
+            time = formatDate2(dmsData.time);
+        }
+        var msg="";
+        var content =dmsData.content;
+        var uid = dmsData.uid;
+        var msg_id = dmsData.msg_id;
+        msg +='\
+                <li class="'+msg_id+' clearfix">\
+                     <ul class="list-title list-inline" >\
+                        <li>'+dmsData.nick+'('+uid+')</li>\
+                        <li><a class="btn btn-link" onclick="reviewOper(\''+msg_id+'\',9)" >删除</a >\
+                        <a class="btn btn-link" onclick="reviewOper(\''+msg_id+'\',2)"  >发布</a >\
+                          '+time+'</li>\
+                     </ul>\
+                      <p class="fl">'+replaceEm(dmsObj.htmlspecialchars(content))+'</p>\
+                      <span class="reply-content"></span>\
+                  <li>';
+        $('.review-message').prepend(msg);
+}
+$('.del-sure').click(function(){
+     var data = {};
+     data.doc_id = $('#doc_id').val();
+     var hide_id = $('#doc_id').val();
+     dmsObj.delWisDoc(data,function(data){
+         $('li.'+hide_id).hide();
+     },function(data){
+         dlg(data.FlagString,'提示','modal-sm');
+     });
+});
+var replaceEm = function(str) {
+        str = str.replace(/\</g, '&lt;');
+        str = str.replace(/\>/g, '&gt;');
+        str = str.replace(/\n/g, '<br/>');
+        str = str.replace(/\[em_([0-9]*)\]/g, '<img src="./statics/img/arclist/$1.gif" border="0" style="vertical-align: middle;width: 24px;"/>');
+        return str;
+}
+var alertMsg = function(msg, icon) {
+        icon = (icon == 'ok' || icon == 'face-sad' || icon == 'face-smile' || icon == 'loading' || icon == 'question' || icon == 'succeed' || icon == 'warning') ? (icon) : 'error';
+        $.dialog({
+            icon: icon,
+            content: msg,
+            time: 3,
+            top: '250px'
+        });
+    }
+function publish(){
+        var t_obj = $('#aodianyun-dms-text');
+        var content = t_obj.val();
+        var parten = /^\s*$/;
+        if (content == '' || parten.test(content)) {
+            alertMsg('请输入内容');
+            return;
+        }
+        if (content.length > 100) {
+           alertMsg('内容不能大于100个字');
+            return;
+        }
+        content = content.replace(/\[([\u4e00-\u9fa5]{1,})\]/g, function() {
+            if (typeof(dmsFaceArr2[arguments[1]]) == 'undefined') {
+                return arguments[0];
+            } else {
+                return '[' + dmsFaceArr2[arguments[1]] + ']';
+            }
+        });
+        var dmsData = {
+            uid: dmsObj.dmsConfig.uid,
+            nick: dmsObj.dmsConfig.nick,
+            ava: dmsObj.dmsConfig.ava,
+            content: content,
+            time: Math.ceil(new Date().getTime() / 1000)
+        };
+        dmsPublish(dmsData);
+        t_obj.val('');
+        window.setTimeout('$("#aodianyun-dms-text")[0].focus();', 100);
+}
+function dmsPublish(args, error){
+      dmsObj.dmsAuthMsgPublish({dmsData:args},function(data){
+        console.log && dmsObj.dmsConfig.DEBUG && console.log('args:', args, 'data:', data);
+      },function(data){
+          console.log && dmsObj.dmsConfig.DEBUG && console.log('args:', args, 'data:', data);
+          alertMsg('操作失败:'+data.FlagString)
+      });
+}
+function publishHtml(dmsData){
+    var msg_list = $('#dmsMessage').children();
+    if (msg_list.length >= 100) { //聊天记录保存100条
+        msg_list[0].remove();
+    }
+
+    var mode = /^([0-9]+)$/;
+    var time = dmsData.time;
+    if (mode.test(dmsData.time)) {
+        time = formatDate2(dmsData.time);
+    }
+    var msg ='';
+    var uid = dmsData.uid;
+    var content = dmsData.content;
+    msg += '\
+            <li>\
+               <ul class="list-title list-inline">\
+                  <li><img class="chat-icon" src='+dmsData.ava+' /></li>\
+                  <li>'+dmsData.nick+ '('+uid+')</li>\
+                  <li>' + time + '</li>\
+               </ul>\
+               <p>' + replaceEm(dmsObj.htmlspecialchars(dmsData.content)) + '</p>\
+            <li>';
+    $('#dmsMessage').append(msg);
+    $('.chat-list').scrollTop($('#dmsMessage').height());
+}
+function systemHtml(dmsData,num) {
+    var msg_list = $('#dmsMessage').children();
+    if (msg_list.length >= 100) { //聊天记录保存100条
+        msg_list[0].remove();
+    }
+
+    var mode = /^([0-9]+)$/;
+    var time = dmsData.time;
+    if (mode.test(dmsData.time)) {
+        time = formatDate2(dmsData.time);
+    }
+    var msg ='';
+    var uid = "";
+    if(dmsData.clientId){
+        uid = dmsData.clientId.split('_')[2];
+    }
+    //var status = dmsData.state == 1 ? '进入房间' : '退出房间';
+    var status = '进入房间';
+    var status_txt="";
+    if(num==1){
+        status_txt = dmsData.nick + '(' + uid + ')' + status;
+    } else if(num==2){
+        status_txt = "系统已开始直播";
+    } else if(num==3){
+        status_txt = "系统已结束直播";
+    }
+    msg += '\
+            <li>\
+               <ul class="list-title list-inline">\
+                  <li><span class="icon"></span></li>\
+                  <li> 系统提示 </li>\
+                  <li>' + time + '</li>\
+               </ul>\
+               <p>' + status_txt + '</p>\
+            <li>';
+    if(num==1){
+        if(dmsData.state==1){
+            $('#dmsMessage').append(msg);
+        }
+    } else {
+        $('#dmsMessage').append(msg);
+    }
+    //$('.chat-list').scrollTop($('#dmsMessage').height());
+}
+function formatDate2(now){
+    if(now){
+        now = new Date(now*1000);
+    }
+    else{
+        now = new Date();
+    }
+    var year = now.getFullYear() ;
+    var month = now.getMonth()+1;
+    var date = now.getDate();
+    var hour = now.getHours();
+    if(month < 10){
+        month = '0' + month.toString();
+    }      
+    var minute = now.getMinutes();    
+    if(date < 10){
+        date = '0' + date.toString();
+    } 
+    if(hour < 10){
+        hour = '0' + hour.toString();
+    }      
+    var minute = now.getMinutes();    
+    if(minute < 10){
+        minute = '0' + minute.toString();
+    } 
+    return month+'-'+date+' '+hour+":"+minute;
+}
+function question(dmsData){
+    var mode = /^([0-9]+)$/;
+    var time = dmsData.time;
+    if (mode.test(dmsData.time)) {
+        time = formatDate2(dmsData.time);
+    }
+    var msg="";
+    var content =dmsData.content;
+    var uid = dmsData.uid;
+    var msg_id = dmsData.msg_id;
+
+    msg += '\
+            <li class="'+msg_id+' clearfix">\
+               <ul class="list-title list-inline" >\
+                  <li>'+dmsData.nick+ '('+uid+')</li>\
+                  <li><a class="btn btn-link" onclick="delanswer(\''+msg_id+'\')" >删除</a >\
+                      <a class="btn btn-link answer-btn" onclick="answer(\''+msg_id+'\')"  >回复</a >' + time + '</li>\
+               </ul>\
+               <p class="fl">提问：' + replaceEm(dmsObj.htmlspecialchars(content)) + '</p>\
+               <span class="reply-content"></span>\
+            <li>';
+    $('.ask-message').prepend(msg);
+}
+function answer (msg_id) {
+    $('.ask-txt').val('');
+    $('#msg_id').val(msg_id);
+    $('#replyModal').modal();
+}
+
+$('#replyModal').on('shown.bs.modal',function(){
+     $('#replyModal').find('textarea').focus();
+});
+
+function delanswer(msg_id){
+   var data = {};
+    data.msg_id = msg_id;
+    dmsObj.delQuestion(data,function(data){
+    },function(data){
+    });
+}
+$('.answer-sure').click(function(){
+    var data = {};
+        data.msg_id = $('#msg_id').val();
+        data.content  = $('.ask-txt').val();
+        dmsObj.sendAnswer(data,function(data){
+    },function(data){
+
+    });
+});
+$('.clear-all').click(function(){
+    $('#clearModalAnswer').modal();
+});
+$('.clear-sure-answer').click(function(){
+    var data = {};
+    dmsObj.delQuestionReview(data,function(data){
+        $('.ask-message').empty();
+    },function(data){
+        dlg(data.FlagString);
+    });
+});
+function replayContent (dmsData) {
+    var content =dmsData.content;
+    var msg_id = dmsData.msg_id;
+    $('.ask-message').find('.'+msg_id).find('.answer-btn').hide();
+    $('.ask-message').find('.'+msg_id).find('.reply-content').html('回复：'+replaceEm(dmsObj.htmlspecialchars(content)));
+    $('.ask-message').find('.'+msg_id).find('.reply-content').show();
+}
+
+dmsObj.onMsg('addquestion', function(topic, dmsData) {
+    question(dmsData);
+});
+dmsObj.onMsg('answer', function(topic, dmsData) {
+    replayContent(dmsData);
+});
+
+dmsObj.onMsg('chat', function(topic, dmsData) {
+    publishHtml(dmsData);
+});
+
+dmsObj.onMsg('delquestion', function(topic, dmsData) {
+    $('.'+dmsData.msg_id).remove();
+});
+dmsObj.onMsg('review', function(topic, dmsData) {
+    if(dmsData.state==1){
+        reviewHtml(dmsData);
+    }
+});
+
+dmsObj.onStartPublish(function(dmsData) {
+    systemHtml(dmsData, 2);
+});
+dmsObj.onStopPublish(function(dmsData) {
+    systemHtml(dmsData, 3);
+});
+dmsObj.onEnter(function(dmsData) {
+    systemHtml(dmsData,1);
+});
+
+
+$(function(){
+    //上下一页
+    $('.next-list').click(function(){
+        var page = $('.page-txt').html();
+        getDoc(page*1+1);
+        $('.page-txt').html(page*1+1);
+    });
+    $('.last-list').click(function(){
+        var page = $('.page-txt').html();
+        if(page*1==1) return;
+        getDoc(page*1-1);
+        $('.page-txt').html(page*1-1);
+    });
+    $('.doc-body ul li').each(function(){
+        var id = $(this).prop('css');
+        ChoseDoc(id);
+    });
+    //开始结束直播
+    $(document).on('click','.play-btn',function(){
+        if($(this).hasClass("btn-success")){
+        $(this).addClass("btn-warning");
+        $(this).removeClass("btn-success");
+        $(this).html('结束直播');
+        window.startPub();
+    } else {
+        $(this).addClass("btn-success");
+        $(this).removeClass("btn-warning");
+        $(this).html('开始直播');
+        window.stopPub();
+    }
+    });
+    //开始结束录制
+    $(document).on('click','.record-btn',function(){
+        if($(this).html()=="开始录制"){
+            stateRecord(1);
+        } else {
+            stateRecord(0);
+        }
+    });
+});
+</script>
+</html>
