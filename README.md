@@ -1,10 +1,10 @@
 # 功能模块HTML嵌入
 
-欢迎使用[金融解决方案](http://finance.aodianyun.com/info.html)HTML模块 目前模块有 `聊天模块` `问答模块` `用户列表`
+欢迎使用[金融解决方案](http://58jinrongyun.com/info.html)HTML模块 目前模块有 `聊天模块` `问答模块` `用户列表`
 
-这些模块依赖于 `jquery1.10` 及以上版本 和 `dmshub.js`(不支持https)，使用之前需在[金融解决方案后台](http://finance.aodianyun.com/admin/)创建房间
+这些模块依赖于 `jquery1.10` 及以上版本 和 `dmshub.js`(不支持https)，使用之前需在[金融解决方案后台](http://58jinrongyun.com/admin/)创建房间
 
-引用 地址： `<script src="http://finance.aodianyun.com/dist/sdk/dmshub.js?v=1.0.0"></script>`
+引用 地址： `<script src="http://58jinrongyun.com/dist/sdk/dmshub.js?v=1.0.0"></script>`
 
 CDN 地址 `<script src="http://static.douyalive.com/dist/sdk/dmshub.js?v=1.0.0"></script>`
 
@@ -21,16 +21,16 @@ CDN 地址 `<script src="http://static.douyalive.com/dist/sdk/dmshub.js?v=1.0.0"
 
 ``` html
 <script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
-<script src="http://finance.aodianyun.com/dist/sdk/dmshub.js?v=1.0.0>"></script>
+<script src="http://58jinrongyun.com/dist/sdk/dmshub.js?v=1.0.0>"></script>
 <link rel="stylesheet" type="text/css" href="./statics/css/common.css">
 
 <!--嵌入播放器 需要把参数r=XXX修改为你的房间id objectPlayer对象可用，具体请阅读objectPlayer相关文档  http://www.aodianyun.com/aodianyun_doc/254  -->
 <div id="play-container" class="video-box"></div>
-<script type="text/javascript" src="http://finance.aodianyun.com/helper/room_player.js?r=1478&id=play-container&chat=0"></script>
+<script type="text/javascript" src="http://58jinrongyun.com/helper/room_player.js?r=1478&id=play-container&chat=0"></script>
 
 <!--嵌入PPT白板 需要把参数r=XXX修改为你的房间id WISExchange对象可用，具体请阅读WISExchange相关文档  http://www.aodianyun.com/aodianyun_doc/365  -->
 <iframe id="wis-container" class="white-box"></iframe>
-<script type="text/javascript" src="http://finance.aodianyun.com/helper/room_wis.js?r=1478&id=wis-container"></script>
+<script type="text/javascript" src="http://58jinrongyun.com/helper/room_wis.js?r=1478&id=wis-container"></script>
     
 <!--聊天栏 请阅读聊天栏文档 按需求操作并引用依赖的js和css-->
 <div class="chat"></div>
@@ -117,9 +117,9 @@ CDN 地址 `<script src="http://static.douyalive.com/dist/sdk/dmshub.js?v=1.0.0"
 
 `http://github-page.aodianyun.com/caijingmobile.html?nick=李四&uid=10002`
 
-[简单视频聊天页面 后台审核页面](http://finance.aodianyun.com/admin/mcsblock/wisreview?token=ac5dVKXnNeNue6E2fX6TzEzNHv-mdfnYDSssbQJjT2XpAQssFfm9Cl4626ZmQ6fu7kdQ4zbB1Q7iR4Lr7v6PsJOTqeTPGmLzz9TE1CTf7KrNE7xfbACP6iN9qDvxVyc)
+[简单视频聊天页面 后台审核页面](http://58jinrongyun.com/admin/mcsblock/wisreview?token=ac5dVKXnNeNue6E2fX6TzEzNHv-mdfnYDSssbQJjT2XpAQssFfm9Cl4626ZmQ6fu7kdQ4zbB1Q7iR4Lr7v6PsJOTqeTPGmLzz9TE1CTf7KrNE7xfbACP6iN9qDvxVyc)
 
-`http://finance.aodianyun.com/admin/mcsblock/wisreview?token=ac5dVKXnNeNue6E2fX6TzEzNHv-mdfnYDSssbQJjT2XpAQssFfm9Cl4626ZmQ6fu7kdQ4zbB1Q7iR4Lr7v6PsJOTqeTPGmLzz9TE1CTf7KrNE7xfbACP6iN9qDvxVyc`
+`http://58jinrongyun.com/admin/mcsblock/wisreview?token=ac5dVKXnNeNue6E2fX6TzEzNHv-mdfnYDSssbQJjT2XpAQssFfm9Cl4626ZmQ6fu7kdQ4zbB1Q7iR4Lr7v6PsJOTqeTPGmLzz9TE1CTf7KrNE7xfbACP6iN9qDvxVyc`
 
 [视频+PPT+聊天+问答](http://github-page.aodianyun.com/index.html?nick=隔壁老王&uid=10003)
 
@@ -133,14 +133,14 @@ CDN 地址 `<script src="http://static.douyalive.com/dist/sdk/dmshub.js?v=1.0.0"
 
 `http://github-page.aodianyun.com/publish/index.html?token=ac5dVKXnNeNue6E2fX6TzEzNHv-mdfnYDSssbQJjT2XpAQssFfm9Cl4626ZmQ6fu7kdQ4zbB1Q7iR4Lr7v6PsJOTqeTPGmLzz9TE1CTf7KrNE7xfbACP6iN9qDvxVycnick=李老师&uid=8888`
 
-[视频+PPT+聊天+问答 后台审核页面](http://finance.aodianyun.com/admin/mcsblock/wismgr?token=ac5dVKXnNeNue6E2fX6TzEzNHv-mdfnYDSssbQJjT2XpAQssFfm9Cl4626ZmQ6fu7kdQ4zbB1Q7iR4Lr7v6PsJOTqeTPGmLzz9TE1CTf7KrNE7xfbACP6iN9qDvxVyc)
+[视频+PPT+聊天+问答 后台审核页面](http://58jinrongyun.com/admin/mcsblock/wismgr?token=ac5dVKXnNeNue6E2fX6TzEzNHv-mdfnYDSssbQJjT2XpAQssFfm9Cl4626ZmQ6fu7kdQ4zbB1Q7iR4Lr7v6PsJOTqeTPGmLzz9TE1CTf7KrNE7xfbACP6iN9qDvxVyc)
 
-`http://finance.aodianyun.com/admin/mcsblock/wismgr?token=ac5dVKXnNeNue6E2fX6TzEzNHv-mdfnYDSssbQJjT2XpAQssFfm9Cl4626ZmQ6fu7kdQ4zbB1Q7iR4Lr7v6PsJOTqeTPGmLzz9TE1CTf7KrNE7xfbACP6iN9qDvxVyc`
+`http://58jinrongyun.com/admin/mcsblock/wismgr?token=ac5dVKXnNeNue6E2fX6TzEzNHv-mdfnYDSssbQJjT2XpAQssFfm9Cl4626ZmQ6fu7kdQ4zbB1Q7iR4Lr7v6PsJOTqeTPGmLzz9TE1CTf7KrNE7xfbACP6iN9qDvxVyc`
 
 注： **本demo仅供展示使用不可用于其他用途** 对应测试房间为 1478， 发布视频可使用 [MCS直播工具](http://www.aodianyun.com/aodianyun_doc/301) （直播账号 `dyy42446555` 密码 `123456`)
 或者使用OBS等推流软件 推流地址：`rtmp://13830.lsspublish.aodianyun.com/dyy_1736_133/a0c3d2dd3b4688f31da13991477980d9`
 
-对应[金融解决方案后台管理帐号](http://finance.aodianyun.com/admin/)为  demo  密码为  demo （**请不要修改密码**）
+对应[金融解决方案后台管理帐号](http://58jinrongyun.com/admin/)为  demo  密码为  demo （**请不要修改密码**）
 
 
 
