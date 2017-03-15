@@ -19,6 +19,8 @@
 <script type="text/javascript" src="./statics/js/jquery.qqFace.js" ></script>
 <script src="//58jinrongyun.com/dist/sdk/dmshub.js?v=1.2"></script>
 
+<script type="text/javascript" src="./statics/js/userlist.js" ></script>
+
 </head>
 <style type="text/css">
 body,html{width: 100%;height: 100%;}
@@ -28,8 +30,8 @@ body,html{width: 100%;height: 100%;}
 .icon{display: inline-block;width: 26px;height: 26px;vertical-align: middle;background: url('./statics/img/iconbg.png') no-repeat -394px 1px;margin-top: 11px;}
 .cfm{margin: 0px auto;width: 1290px;height: 670px;}
 .box{width:100%;height: 100%;overflow: hidden;}
-.box-body{width: 100%;height: 625px;}
-.box-foot{width: 100%;height: 40px;border-top: 1px solid gray;}
+.box-body{width: 100%;height: 95%;}
+.box-foot{width: 100%;height:5%;border-top: 1px solid gray;}
 
 .oper-btn{display: inline-block;width: 100px;height: 30px;text-align: center;line-height: 30px;border:1px solid gray;margin: 5px;color: black;cursor: pointer;}
 
@@ -107,7 +109,7 @@ ul.review-message ul li a.btn{padding:6px 0px; }
                       <div class="tabbable">
                       <ul class="list-unstyled">
                             <li class="active">
-                              <a href="#online" data-toggle="tab">在线</a>
+                              <a href="#online" data-toggle="tab">在线(4)</a>
                            </li>
                            <li>
                               <a href="#check" data-toggle="tab">审核</a>
@@ -125,16 +127,14 @@ ul.review-message ul li a.btn{padding:6px 0px; }
                   </div>
                       <div class="tab-content">
                           <div class="tab-pane active online-box" id="online">
-                            <div class="online-search">
-                                <input type="" name=""> <button class="btn btn-primary">搜索</button>
+                            <div class="online-search form-group">
+                                <div class="col-md-8"><input class="form-control" type="text" name=""></div>
+                                <div class="col-md-4"><button class="btn btn-primary">搜索</button></div>
                             </div>
                             <div class="online-content">
-                                <ul class="list-unstyled">
-                                  <li>fggfgfgfg
-                                  </li>
-                                  <li>gtrrytytytyty</li>
-                                  <li>gtrrytytytyty</li>
-                                </ul>
+                                <div class="userlist-div">
+                                  
+                                </div>
                             </div>
                           </div>
                           <div class="tab-pane ask-box" id="check" >
@@ -320,7 +320,7 @@ var $_GET = (function(){
         return {};
     }
 })();
-
+var userObj;
 //配置dmscomfig
 var dmsObj = new DmsHub({
     debug: typeof console.log == 'function',
@@ -361,6 +361,11 @@ var dmsObj = new DmsHub({
         });
     });
     $('#wisIframe').prop({'src':dmsObj.dmsConfig.wis_record_url});
+
+    //用户列表初始化
+     userObj = $('.userlist-div').userlist({
+        config:this                 //配置信息
+    });
 });
 // AUTH_TOKEN = '<?=$token?>';
 
@@ -787,10 +792,13 @@ dmsObj.onStartPublish(function(dmsData) {
 dmsObj.onStopPublish(function(dmsData) {
     systemHtml(dmsData, 3);
 });
+
 dmsObj.onEnter(function(dmsData) {
     systemHtml(dmsData,1);
 });
-
+dmsObj.onLeave(function(dmsData) {
+    systemHtml(dmsData,1);
+});
 
 $(function(){
     //上下一页
