@@ -141,7 +141,7 @@
             content: content,
             time: Math.ceil(new Date().getTime() / 1000)
           };
-          this.opts.config.dmsMsgPublish(dmsData,function(data){
+          this.opts.config.dmsMsgPublish({dmsData: dmsData},function(data){
               dmsData.msg_id = data.Info.msg_id; 
               $('#'+self.opts.textareaId).val('');
               $('#'+self.opts.textareaId).focus();
