@@ -20,6 +20,7 @@
 <script src="//58jinrongyun.com/dist/sdk/dmshub.js?v=1.2"></script>
 
 <script type="text/javascript" src="./statics/js/userlist.js" ></script>
+<script type="text/javascript" src="./statics/js/miclist.js" ></script>
 
 </head>
 <style type="text/css">
@@ -64,7 +65,7 @@ body,html{width: 100%;height: 100%;}
 .tabbable{width: 100%;height: 40px;margin-top: -10px;}
 .tabbable ul li a{width: 100%;height: 100%;display: inline-block;text-decoration: none;border:1px solid gray;border-left: none;}
 .tabbable ul li a:link{color: none;}
-.tabbable ul li{width: 72px;height: 38px;text-align: center;padding: 0px !important;line-height: 40px;float: left;}
+.tabbable ul li{width: 60px;height: 38px;text-align: center;padding: 0px !important;line-height: 40px;float: left;}
 .tabbable ul li.active a{border-bottom: 1px solid white;}
 
 .tab-content .online-box {}
@@ -111,6 +112,9 @@ ul.review-message ul li a.btn{padding:6px 0px; }
                             <li class="active">
                               <a href="#online" data-toggle="tab">在线(4)</a>
                            </li>
+                            <li>
+                              <a href="#mic" data-toggle="tab">连麦</a>
+                           </li>
                            <li>
                               <a href="#check" data-toggle="tab">审核</a>
                            </li>
@@ -133,7 +137,12 @@ ul.review-message ul li a.btn{padding:6px 0px; }
                             </div>
                             <div class="online-content">
                                 <div class="userlist-div">
-                                  
+                                </div>
+                            </div>
+                          </div>
+                          <div class="tab-pane mic-box" id="mic">
+                            <div class="mic-content">
+                                <div class="miclist-div">
                                 </div>
                             </div>
                           </div>
@@ -320,7 +329,7 @@ var $_GET = (function(){
         return {};
     }
 })();
-var userObj;
+var userObj, micObj;
 //配置dmscomfig
 var dmsObj = new DmsHub({
     debug: typeof console.log == 'function',
@@ -363,7 +372,11 @@ var dmsObj = new DmsHub({
     $('#wisIframe').prop({'src':dmsObj.dmsConfig.wis_record_url});
 
     //用户列表初始化
-     userObj = $('.userlist-div').userlist({
+    userObj = $('.userlist-div').userlist({
+        config:this                 //配置信息
+    });
+    //排麦列表初始化
+    micObj = $('.miclist-div').miclist({
         config:this                 //配置信息
     });
 });
