@@ -230,7 +230,6 @@ window.ADAddPubEvent(function (code, msg) {
 var userObj, micObj ,askObj;
 //配置dmscomfig
 var dmsObj = new DmsHub({
-    host: location.hostname,
     debug: typeof console.log == 'function',
     room_id: $_GET['room_id'] || 1478,
 	uid: $_GET['uid'] || 2858,
